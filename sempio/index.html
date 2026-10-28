@@ -16,18 +16,16 @@
         <main>
             <div class="hero-sec">
                 <!-- Slider main container -->
-                <div class="swiper visual">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div class="swiper-slide">
-                            <video src="video/sempio_video01.mp4" alt="차오차이" class="pc">
-                            <img src="img/visual01_mobile.png" alt="모바일차오차이" class="mo">
-                        </div>
-                        <div class="swiper-slide">
-                            <video src="video/sempio_video02.mp4" alt="연두링" class="pc">
-                            <img src="img/visual02_mobile.png" alt="모바일연두링" class="mo">
-                        </div>
+                <div class="swiper-wrapper">
+                        <video class="pc" autoplay muted loop playsinline>
+                            <source src="video/sempio_video01.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="swiper-slide">
+                        <video class="pc" autoplay muted loop playsinline>
+                            <source src="video/sempio_video02.mp4" type="video/mp4">
+                        </video>
+                    </div>
                     ...
                     </div>
                     <!-- If we need pagination -->
