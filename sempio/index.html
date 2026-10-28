@@ -15,27 +15,30 @@
         <header>제목공간</header>
         <main>
             <div class="hero-sec">
-                <!-- Slider main container -->
-                <div class="swiper-wrapper">
-                        <video class="pc" autoplay muted loop playsinline>
-                            <source src="video/sempio_video01.mp4" type="video/mp4">
-                        </video>
+                <div class="swiper visual">
+                    <div class="swiper-wrapper">
+            
+                        <!-- 첫 번째 영상 -->
+                        <div class="swiper-slide">
+                            <video muted playsinline preload="metadata">
+                                <source src="video/sempio_video01.mp4" type="video/mp4">
+                            </video>
+                        </div>
+            
+                        <!-- 두 번째 영상 -->
+                        <div class="swiper-slide">
+                            <video muted playsinline preload="metadata">
+                                <source src="video/sempio_video02.mp4" type="video/mp4">
+                            </video>
+                        </div>
+            
                     </div>
-                    <div class="swiper-slide">
-                        <video class="pc" autoplay muted loop playsinline>
-                            <source src="video/sempio_video02.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    ...
-                    </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- If we need navigation buttons -->
+            
+                    <!-- 화살표 -->
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
-
-                    <!-- If we need scrollbar -->
+            
+                    <!-- 두 개의 막대 -->
                     <div class="swiper-scrollbar"></div>
                 </div>
             </div>
