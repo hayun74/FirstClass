@@ -29,17 +29,14 @@ body {
     color: #fff;
 }
 
-/* 페이지네이션은 사용하지 않음 */
-.hero-sec .visual .swiper-pagination {
-    display: none;
-}
-
-/* 화면 하단 전체 폭을 사용하는 두 개의 상태 표시 막대 */
+/* 화면 하단에서 60px 위에 두 개의 진행 막대 배치 */
 .hero-sec .visual .swiper-scrollbar {
+    --first-progress: 0%;
+    --second-progress: 0%;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 60px;
     z-index: 10;
     display: flex;
     gap: 4px;
@@ -50,37 +47,36 @@ body {
     opacity: 1;
 }
 
-/* Swiper 기본 드래그 막대 대신 두 막대로 표시 */
+/* 각 막대는 영상 진행률에 따라 왼쪽부터 흰색으로 채워짐 */
 .hero-sec .visual .swiper-scrollbar::before,
 .hero-sec .visual .swiper-scrollbar::after {
     content: "";
     display: block;
     flex: 1;
     height: 100%;
-    background: #fff;
     border-radius: 0;
-    transition: opacity 0.25s ease;
+    background: #fff;
 }
 
 .hero-sec .visual .swiper-scrollbar::before {
-    opacity: 1;
+    background: linear-gradient(
+        to right,
+        #fff var(--first-progress),
+        rgba(255, 255, 255, 0.4) var(--first-progress)
+    );
 }
 
 .hero-sec .visual .swiper-scrollbar::after {
-    opacity: 0.4;
+    background: linear-gradient(
+        to right,
+        #fff var(--second-progress),
+        rgba(255, 255, 255, 0.4) var(--second-progress)
+    );
 }
 
+/* Swiper 기본 드래그 막대는 숨김 */
 .hero-sec .visual .swiper-scrollbar-drag {
     display: none;
-}
-
-/* 두 번째 슬라이드가 활성화되면 오른쪽 막대를 선명하게 표시 */
-.hero-sec .visual:has(.swiper-slide-active[data-swiper-slide-index="1"]) .swiper-scrollbar::before {
-    opacity: 0.4;
-}
-
-.hero-sec .visual:has(.swiper-slide-active[data-swiper-slide-index="1"]) .swiper-scrollbar::after {
-    opacity: 1;
 }
 
 @media (max-width: 1024px) {
