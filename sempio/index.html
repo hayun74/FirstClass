@@ -44,26 +44,62 @@
     </div>
     <script>
         const swiperHero = new Swiper('.hero-sec > .swiper', {
-            // Optional parameters
             direction: 'horizontal',
             loop: true,
-
-            // If we need pagination
+    
             pagination: {
                 el: '.swiper-pagination',
             },
-
-            // Navigation arrows
+    
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-
-            // And if we need scrollbar
+    
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
-        }); 
+        });
+    
+        // 현재 활성화된 슬라이드의 영상만 재생
+        function playActiveVideo() {
+            const slides = swiperHero.slides;
+    
+            // 이전 영상은 멈추고 처음으로 되돌리기
+            slides.forEach((slide) => {
+                const video = slide.querySelector('video');
+    
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                    video.onended = null;
+                }
+            });
+    
+            // 현재 슬라이드의 영상 찾기
+            const activeSlide = swiperHero.slides[
+                swiperHero.activeIndex
+            ];
+    
+            const activeVideo = activeSlide.querySelector('video');
+    
+            if (!activeVideo) return;
+    
+            // 영상이 끝나면 다음 슬라이드로 이동
+            activeVideo.onended = () => {
+                swiperHero.slideNext();
+            };
+    
+            activeVideo.play().catch((error) => {
+                console.error('영상 재생 실패:', error);
+            });
+        }
+    
+        // 최초 영상 재생
+        playActiveVideo();
+    
+        // 슬라이드 전환이 끝나면 다음 영상 재생
+        swiperHero.on('slideChangeTransitionEnd', playActiveVideo);
     </script>
 </body>
 </html>
