@@ -28,3 +28,68 @@ body {
         height: 95dvh;
     }
 }
+
+/* 메인 비주얼: 두 장의 슬라이드 순서를 보여주는 인디케이터 */
+.hero-sec .visual {
+    position: relative;
+}
+
+.hero-sec .visual .swiper-pagination {
+    display: none;
+}
+
+.hero-sec .visual .swiper-scrollbar {
+    position: absolute;
+    left: auto;
+    right: 7%;
+    bottom: 18px;
+    z-index: 10;
+    display: flex;
+    gap: 6px;
+    width: min(48%, 300px);
+    height: 2px;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+}
+
+/* Swiper 기본 드래그 막대 대신 두 개의 상태 표시 막대를 사용 */
+.hero-sec .visual .swiper-scrollbar::before,
+.hero-sec .visual .swiper-scrollbar::after {
+    content: "";
+    display: block;
+    flex: 1;
+    height: 100%;
+    background: #fff;
+    border-radius: 0;
+    transition: opacity 0.25s ease;
+}
+
+.hero-sec .visual .swiper-scrollbar::before {
+    opacity: 1;
+}
+
+.hero-sec .visual .swiper-scrollbar::after {
+    opacity: 0.4;
+}
+
+.hero-sec .visual .swiper-scrollbar-drag {
+    display: none;
+}
+
+/* 두 번째 슬라이드가 활성화되면 오른쪽 막대를 더 선명하게 표시 */
+.hero-sec .visual:has(.swiper-slide-active[data-swiper-slide-index="1"]) .swiper-scrollbar::before {
+    opacity: 0.4;
+}
+
+.hero-sec .visual:has(.swiper-slide-active[data-swiper-slide-index="1"]) .swiper-scrollbar::after {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .hero-sec .visual .swiper-scrollbar {
+        right: 5%;
+        bottom: 16px;
+        width: min(55%, 220px);
+    }
+}
