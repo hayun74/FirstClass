@@ -167,7 +167,7 @@ a {
 /* PC: 헤더에 포인터를 올리거나 키보드로 진입하면 흰색 메가 메뉴로 전환 */
 .site-header:hover,
 .site-header:focus-within {
-    height: 194px;
+    height: 330px;
     color: #222;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
