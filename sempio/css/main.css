@@ -8,75 +8,18 @@ body {
 }
 
 /* 메인 비주얼을 화면 높이만큼 사용 */
-.hero-sec .swiper {
-    position: relative;
+.hero-sec {
     width: 100%;
     height: 100vh;
     min-height: 600px;
+    overflow: hidden;
 }
 
-.hero-sec .swiper img,
-.hero-sec .swiper video {
+.hero-sec .hero-video {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-
-/* Swiper 기본 화살표를 흰색으로 표시 */
-.hero-sec .visual .swiper-button-prev,
-.hero-sec .visual .swiper-button-next {
-    color: #fff;
-}
-
-/* 화면 하단에서 60px 위에 두 개의 진행 막대 배치 */
-.hero-sec .visual .swiper-scrollbar {
-    --first-progress: 0%;
-    --second-progress: 0%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-    z-index: 10;
-    display: flex;
-    gap: 4px;
-    width: 100%;
-    height: 3px;
-    border-radius: 0;
-    background: transparent;
-    opacity: 1;
-}
-
-/* 각 막대는 영상 진행률에 따라 왼쪽부터 흰색으로 채워짐 */
-.hero-sec .visual .swiper-scrollbar::before,
-.hero-sec .visual .swiper-scrollbar::after {
-    content: "";
-    display: block;
-    flex: 1;
-    height: 100%;
-    border-radius: 0;
-    background: #fff;
-}
-
-.hero-sec .visual .swiper-scrollbar::before {
-    background: linear-gradient(
-        to right,
-        #fff var(--first-progress),
-        rgba(255, 255, 255, 0.4) var(--first-progress)
-    );
-}
-
-.hero-sec .visual .swiper-scrollbar::after {
-    background: linear-gradient(
-        to right,
-        #fff var(--second-progress),
-        rgba(255, 255, 255, 0.4) var(--second-progress)
-    );
-}
-
-/* Swiper 기본 드래그 막대는 숨김 */
-.hero-sec .visual .swiper-scrollbar-drag {
-    display: none;
+    object-fit: fill;
 }
 
 @media (max-width: 1024px) {
@@ -88,7 +31,7 @@ body {
         display: block;
     }
 
-    .hero-sec .swiper {
+    .hero-sec {
         height: 100dvh;
         min-height: 0;
     }
