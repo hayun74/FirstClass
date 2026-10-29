@@ -236,3 +236,84 @@ a {
         min-height: 0;
     }
 }
+
+
+/* 회사소개 - Vision */
+.company-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 100px 24px;
+    box-sizing: border-box;
+    background: #fff;
+    text-align: center;
+}
+
+.company-intro__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    word-break: keep-all;
+}
+
+.company-intro__eyebrow {
+    margin: 0;
+    color: #b61c21;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+    text-decoration: underline;
+    text-decoration-color: #b61c21;
+    text-underline-offset: 4px;
+}
+
+.company-intro__title {
+    margin: 0;
+    color: #b61c21;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+}
+
+.company-intro__description {
+    margin: 0;
+    color: #666;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+}
+
+@media (max-width: 768px) {
+    .company-intro {
+        padding: 72px 20px;
+    }
+
+    .company-intro__content {
+        gap: 24px;
+    }
+
+    .company-intro__eyebrow {
+        font-size: 20px;
+    }
+
+    .company-intro__title {
+        font-size: clamp(28px, 6vw, 42px);
+        line-height: 1.4;
+    }
+
+    .company-intro__description {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .company-intro__description br {
+        display: none;
+    }
+}
