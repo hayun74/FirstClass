@@ -337,7 +337,7 @@ a {
     align-items: center;
     gap: 7%;
     padding: 56px 0;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 0;
 }
 .company-value:last-child { border-bottom: 0; }
 .company-value__image {
