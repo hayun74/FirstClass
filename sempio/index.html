@@ -131,6 +131,93 @@
                     </article>
                 </div>
             </section>
+
+            <section class="best-products" aria-labelledby="best-products-title">
+                <div class="best-products__inner">
+                    <div class="best-products__heading">
+                        <p class="best-products__eyebrow">BEST PRODUCT</p>
+                        <h2 id="best-products-title" class="best-products__title">샘표의 베스트 제품</h2>
+                        <div class="product-category-switch">
+                            <button class="product-arrow product-arrow--prev" type="button" aria-label="이전 제품 보기">
+                                <span aria-hidden="true">←</span>
+                            </button>
+                            <p class="product-category" aria-live="polite">간장</p>
+                            <button class="product-arrow product-arrow--next" type="button" aria-label="다음 제품 보기">
+                                <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-list" aria-live="polite">
+                        <article class="product-card">
+                            <div class="product-card__image"><img src="img/product01.png" alt="샘표 진간장 금F3"></div>
+                            <h3>샘표 진간장 금F3</h3>
+                            <p>깊고 풍부한 맛을 더해주는 대표 진간장</p>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-card__image"><img src="img/product02.png" alt="샘표 양조간장 501"></div>
+                            <h3>샘표 양조간장 501</h3>
+                            <p>자연 숙성으로 완성한 깊고 부드러운 풍미</p>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-card__image"><img src="img/product03.png" alt="샘표 양조간장 701"></div>
+                            <h3>샘표 양조간장 701</h3>
+                            <p>풍부한 향과 감칠맛이 살아있는 프리미엄 간장</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <script>
+                (() => {
+                    const productSection = document.querySelector(".best-products");
+                    if (!productSection) return;
+
+                    const productSets = {
+                        soy: {
+                            category: "간장",
+                            products: [
+                                { image: "img/product01.png", alt: "샘표 진간장 금F3", name: "샘표 진간장 금F3", description: "깊고 풍부한 맛을 더해주는 대표 진간장" },
+                                { image: "img/product02.png", alt: "샘표 양조간장 501", name: "샘표 양조간장 501", description: "자연 숙성으로 완성한 깊고 부드러운 풍미" },
+                                { image: "img/product03.png", alt: "샘표 양조간장 701", name: "샘표 양조간장 701", description: "풍부한 향과 감칠맛이 살아있는 프리미엄 간장" }
+                            ]
+                        },
+                        sauce: {
+                            category: "양념",
+                            products: [
+                                { image: "img/product04.png", alt: "떡꼬치 양념", name: "발라먹고 찍어먹는 떡꼬치양념", description: "새콤달콤 매콤한 맛으로 떡꼬치를 더욱 맛있게" },
+                                { image: "img/product05.png", alt: "닭갈비 양념", name: "춘천 닭갈비 양념", description: "매콤달콤한 양념으로 집에서도 즐기는 춘천 닭갈비" },
+                                { image: "img/product06.png", alt: "안동찜닭 양념", name: "안동찜닭 양념", description: "깊고 감칠맛 나는 양념으로 완성하는 안동찜닭" }
+                            ]
+                        }
+                    };
+
+                    let currentSet = "soy";
+                    const category = productSection.querySelector(".product-category");
+                    const cards = [...productSection.querySelectorAll(".product-card")];
+
+                    function renderProducts(setName) {
+                        const set = productSets[setName];
+                        category.textContent = set.category;
+
+                        cards.forEach((card, index) => {
+                            const product = set.products[index];
+                            const image = card.querySelector("img");
+                            image.src = product.image;
+                            image.alt = product.alt;
+                            card.querySelector("h3").textContent = product.name;
+                            card.querySelector("p").textContent = product.description;
+                        });
+                    }
+
+                    function changeSet() {
+                        currentSet = currentSet === "soy" ? "sauce" : "soy";
+                        renderProducts(currentSet);
+                    }
+
+                    productSection.querySelector(".product-arrow--prev").addEventListener("click", changeSet);
+                    productSection.querySelector(".product-arrow--next").addEventListener("click", changeSet);
+                })();
+            </script>
         </main>
         <footer>&copy;</footer>
     </div>
