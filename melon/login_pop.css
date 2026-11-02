@@ -1,0 +1,71 @@
+/* Pop Art theme for Melon login page */
+:root {
+    --pop-ink: #171717;
+    --pop-yellow: #FFE33D;
+    --pop-red: #F04438;
+    --pop-blue: #2878E5;
+    --pop-white: #FFFDF4;
+}
+body { background: var(--pop-yellow); color: var(--pop-ink); }
+#wrap {
+    background:
+        radial-gradient(circle, rgba(240,68,56,.18) 1.5px, transparent 2px) 0 0 / 14px 14px,
+        var(--pop-yellow);
+    color: var(--pop-ink);
+}
+header {
+    width: calc(100% - 44px); height: 64px; margin: 34px auto 0;
+    border: 4px solid var(--pop-ink); border-radius: 4px;
+    background: var(--pop-blue); box-shadow: 7px 7px 0 var(--pop-ink);
+}
+header h1 { color: #fff; font-size: 2.1rem; font-weight: 900; text-transform: uppercase; }
+.prev_btn {
+    left: 7px; top: 7px; border: 3px solid var(--pop-ink); border-radius: 2px;
+    background-color: var(--pop-yellow); background-size: 27px;
+}
+main {
+    max-width: 390px; margin: 70px auto 0; padding: 28px 24px;
+    border: 4px solid var(--pop-ink); border-radius: 4px;
+    background: var(--pop-white);
+    box-shadow: 9px 9px 0 var(--pop-ink);
+}
+.email_login label, .login_option label { color: var(--pop-ink); font-weight: 900; }
+input[type="email"], input[type="password"] {
+    height: 48px; border: 3px solid var(--pop-ink); border-radius: 2px;
+    background: #fff; color: var(--pop-ink); box-shadow: 3px 3px 0 var(--pop-ink);
+}
+input[type="password"] { border-radius: 2px; }
+input::placeholder { color: #777; }
+input:focus { outline: 3px solid var(--pop-red); outline-offset: 2px; border-color: var(--pop-ink); }
+.login_btn {
+    height: 54px; border: 4px solid var(--pop-ink); border-radius: 2px;
+    background: var(--pop-red); color: #fff; font-size: 1.9rem; font-weight: 900;
+    text-shadow: 2px 2px 0 var(--pop-ink); box-shadow: 5px 5px 0 var(--pop-ink);
+    cursor: pointer; transition: transform .12s, box-shadow .12s;
+}
+.login_btn:hover { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--pop-ink); }
+.login_link { color: var(--pop-ink); font-weight: 800; }
+.login_link a:not(:last-child)::after { width: 2px; background: var(--pop-ink); }
+.sns_login { margin-top: 48px; }
+.sns_title { color: var(--pop-ink); }
+.sns_title span { height: 3px; background: var(--pop-ink); }
+.sns_title h2 { font-weight: 900; }
+.sns_list { gap: 13px; }
+.sns_list a {
+    width: 48px; height: 48px; border: 3px solid var(--pop-ink); border-radius: 3px;
+    background-size: 29px; box-shadow: 4px 4px 0 var(--pop-ink);
+}
+.sns_list a:nth-child(1) { background-color: #FFE33D; }
+.sns_list a:nth-child(2) { background-color: #65DDA2; }
+.sns_list a:nth-child(3) { background-color: #fff; }
+.sns_list a:nth-child(4) { background-color: #F7A6C8; }
+.theme_switcher select {
+    border: 3px solid var(--pop-ink); border-radius: 2px;
+    background: var(--pop-white); color: var(--pop-ink); box-shadow: 3px 3px 0 var(--pop-ink);
+}
+@media (max-width: 389px) {
+    main { margin: 54px 20px 0; padding: 23px 17px; }
+    .login_link { gap: 7px; font-size: 1.2rem; }
+    .login_link a { gap: 7px; }
+    .sns_list { gap: 9px; }
+}
