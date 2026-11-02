@@ -1,0 +1,89 @@
+/* Claymorphism theme for Melon login page */
+:root {
+    --clay-ink: #51466D;
+    --clay-purple: #A78BFA;
+    --clay-pink: #F7A8C8;
+    --clay-blue: #A9D8F5;
+    --clay-bg: #F3EEFF;
+    --clay-white: #FFFCFF;
+}
+body {
+    background: var(--clay-bg);
+    color: var(--clay-ink);
+}
+#wrap {
+    background:
+        radial-gradient(circle at 12% 22%, rgba(247,168,200,.45), transparent 22%),
+        radial-gradient(circle at 88% 72%, rgba(169,216,245,.55), transparent 24%),
+        var(--clay-bg);
+    color: var(--clay-ink);
+}
+header {
+    width: calc(100% - 48px);
+    height: 62px;
+    margin: 54px auto 0;
+    border: 0;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffaff, #e9e1fa);
+    box-shadow: 10px 10px 22px #d4cce4, -10px -10px 22px #ffffff;
+}
+header h1 { color: var(--clay-ink); font-weight: 800; }
+.prev_btn {
+    left: 8px; top: 8px; width: 46px; height: 46px;
+    border-radius: 15px; background-color: #f5edff; background-size: 28px;
+    box-shadow: 4px 4px 9px #d4cce4, -4px -4px 9px #ffffff;
+}
+main {
+    max-width: 380px;
+    margin: 78px auto 0;
+    padding: 30px 26px;
+    border: 0;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #fffaff, #eee8fb);
+    box-shadow: 14px 14px 28px #d4cce4, -14px -14px 28px #ffffff;
+}
+.email_login label, .login_option label { color: var(--clay-ink); font-weight: 700; }
+input[type="email"], input[type="password"] {
+    height: 48px; border: 0; border-radius: 16px;
+    background: #f5f0ff; color: var(--clay-ink);
+    box-shadow: inset 4px 4px 8px #dcd4e9, inset -4px -4px 8px #ffffff;
+}
+input[type="password"] { border-radius: 16px; }
+input::placeholder { color: #9b91ad; }
+input:focus { outline: 2px solid var(--clay-purple); border: 0; }
+.login_btn {
+    height: 52px; border: 0; border-radius: 18px;
+    background: linear-gradient(145deg, #b99cff, #9273e8);
+    color: #fff; font-weight: 800;
+    box-shadow: 6px 6px 12px #d0c5e7, -5px -5px 10px #ffffff;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+}
+.login_btn:hover { transform: translateY(-2px); box-shadow: 8px 8px 14px #d0c5e7, -5px -5px 10px #fff; }
+.login_link { color: #817593; font-weight: 600; }
+.login_link a:not(:last-child)::after { background: #c9bfd8; }
+.sns_login { margin-top: 58px; }
+.sns_title { color: var(--clay-ink); }
+.sns_title span { height: 2px; background: #d8cfe7; }
+.sns_title h2 { font-weight: 700; }
+.sns_list { gap: 16px; }
+.sns_list a {
+    width: 48px; height: 48px; border: 0; border-radius: 17px;
+    background-size: 29px;
+    box-shadow: 5px 5px 10px #d4cce4, -5px -5px 10px #ffffff;
+    transition: transform .2s;
+}
+.sns_list a:nth-child(1) { background-color: #ffe7a8; }
+.sns_list a:nth-child(2) { background-color: #c9f0d8; }
+.sns_list a:nth-child(3) { background-color: #e7e1ff; }
+.sns_list a:nth-child(4) { background-color: #ffd6e6; }
+.sns_list a:hover { transform: translateY(-3px); }
+.theme_switcher select {
+    border: 0; border-radius: 14px; background: #f3edff; color: var(--clay-ink);
+    box-shadow: 4px 4px 8px #d4cce4, -4px -4px 8px #fff;
+}
+@media (max-width: 389px) {
+    main { margin: 58px 20px 0; padding: 24px 18px; }
+    .login_link { gap: 7px; font-size: 1.2rem; }
+    .login_link a { gap: 7px; }
+    .sns_list { gap: 10px; }
+}
