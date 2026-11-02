@@ -536,3 +536,164 @@ a {
         font-size: 20px;
     }
 }
+
+
+/* 우리맛 메뉴 - 포인터를 올린 카드가 넓어지고 배경이 밝아집니다. */
+.our-flavor {
+    padding: 100px 24px;
+    box-sizing: border-box;
+    background: #fff;
+}
+.our-flavor__inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+.our-flavor__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+.our-flavor__heading h2 {
+    margin: 0;
+    color: #171717;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+}
+.our-flavor__heading h2 span {
+    color: #b61c21;
+    font-weight: 700;
+}
+.our-flavor__more {
+    flex-shrink: 0;
+    color: #666;
+    font-size: 20px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.our-flavor__cards {
+    display: flex;
+    gap: 24px;
+    height: 540px;
+}
+.our-flavor-card {
+    position: relative;
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    min-width: 0;
+    padding: 50px;
+    overflow: hidden;
+    border-radius: 10px;
+    color: #fff;
+    isolation: isolate;
+    text-decoration: none;
+    transition: flex 0.65s cubic-bezier(.2,.75,.25,1);
+}
+.our-flavor-card::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image: var(--card-image);
+    background-position: center;
+    background-size: cover;
+    content: "";
+    transform: scale(1.02);
+    transition: transform 0.65s ease, filter 0.65s ease;
+    filter: brightness(.72);
+}
+.our-flavor-card::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgba(0, 0, 0, .48);
+    content: "";
+    transition: background-color 0.65s ease;
+}
+.our-flavor-card__content {
+    width: 100%;
+    min-width: 0;
+}
+.our-flavor-card h3 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+    word-break: keep-all;
+}
+.our-flavor-card p {
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+    word-break: keep-all;
+    transition: max-height .45s ease, margin-top .45s ease, opacity .35s ease;
+}
+.our-flavor__cards:hover .our-flavor-card {
+    flex-grow: .8;
+}
+.our-flavor__cards .our-flavor-card:hover,
+.our-flavor__cards .our-flavor-card:focus-visible {
+    flex-grow: 1.8;
+}
+.our-flavor-card:hover::before,
+.our-flavor-card:focus-visible::before {
+    filter: brightness(1);
+    transform: scale(1.07);
+}
+.our-flavor-card:hover::after,
+.our-flavor-card:focus-visible::after {
+    background: rgba(0, 0, 0, .25);
+}
+.our-flavor-card:hover p,
+.our-flavor-card:focus-visible p {
+    max-height: 100px;
+    margin-top: 30px;
+    opacity: 1;
+}
+@media (max-width: 768px) {
+    .our-flavor {
+        padding: 72px 20px;
+    }
+    .our-flavor__heading {
+        align-items: flex-end;
+        margin-bottom: 28px;
+    }
+    .our-flavor__heading h2 {
+        font-size: clamp(30px, 7vw, 40px);
+    }
+    .our-flavor__more {
+        font-size: 15px;
+    }
+    .our-flavor__cards {
+        flex-direction: column;
+        gap: 14px;
+        height: auto;
+    }
+    .our-flavor-card,
+    .our-flavor__cards:hover .our-flavor-card,
+    .our-flavor__cards .our-flavor-card:hover,
+    .our-flavor__cards .our-flavor-card:focus-visible {
+        flex: none;
+        min-height: 220px;
+        padding: 28px;
+    }
+    .our-flavor-card h3 {
+        font-size: 30px;
+    }
+    .our-flavor-card p {
+        max-height: 100px;
+        margin-top: 12px;
+        opacity: 1;
+        font-size: 15px;
+    }
+}
