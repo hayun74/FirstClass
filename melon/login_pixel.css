@@ -1,0 +1,77 @@
+/* Pixel Art theme for Melon login page */
+:root {
+    --pixel-ink: #202044;
+    --pixel-navy: #25275B;
+    --pixel-purple: #7656D6;
+    --pixel-mint: #9BF3C8;
+    --pixel-yellow: #FFE889;
+    --pixel-bg: #C9D7FF;
+}
+body {
+    background-color: var(--pixel-bg); color: var(--pixel-ink);
+    font-family: "Courier New", monospace;
+}
+#wrap {
+    background:
+        linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px) 0 0 / 16px 16px,
+        linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px) 0 0 / 16px 16px,
+        var(--pixel-bg);
+    color: var(--pixel-ink);
+}
+header {
+    width: calc(100% - 40px); height: 60px; margin: 38px auto 0;
+    border: 4px solid var(--pixel-ink); border-radius: 0;
+    background: var(--pixel-yellow); box-shadow: 8px 8px 0 var(--pixel-ink);
+}
+header h1 { color: var(--pixel-ink); font-family: "Courier New", monospace; font-size: 1.8rem; font-weight: 900; }
+.prev_btn {
+    left: 7px; top: 7px; border: 3px solid var(--pixel-ink); border-radius: 0;
+    background-color: var(--pixel-mint); background-size: 25px;
+}
+main {
+    max-width: 380px; margin: 72px auto 0; padding: 26px 22px;
+    border: 4px solid var(--pixel-ink); border-radius: 0;
+    background: #F8F8FF; box-shadow: 8px 8px 0 var(--pixel-purple), 16px 16px 0 var(--pixel-ink);
+}
+.email_login label, .login_option label { color: var(--pixel-ink); font-weight: 900; }
+input[type="email"], input[type="password"] {
+    height: 46px; border: 3px solid var(--pixel-ink); border-radius: 0;
+    background: #fff; color: var(--pixel-ink); font-family: "Courier New", monospace;
+    box-shadow: 4px 4px 0 var(--pixel-ink);
+}
+input[type="password"] { border-radius: 0; }
+input::placeholder { color: #77779A; }
+input:focus { outline: 3px dashed var(--pixel-purple); outline-offset: 2px; border-color: var(--pixel-ink); }
+.login_btn {
+    height: 52px; border: 4px solid var(--pixel-ink); border-radius: 0;
+    background: var(--pixel-purple); color: #fff; font-family: "Courier New", monospace;
+    font-size: 1.7rem; font-weight: 900; box-shadow: 5px 5px 0 var(--pixel-ink);
+    cursor: pointer; transition: transform .1s, box-shadow .1s;
+}
+.login_btn:hover { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--pixel-ink); }
+.login_link { color: var(--pixel-ink); font-weight: 800; }
+.login_link a:not(:last-child)::after { width: 2px; background: var(--pixel-ink); }
+.sns_login { margin-top: 52px; }
+.sns_title { color: var(--pixel-ink); }
+.sns_title span { height: 3px; background: var(--pixel-ink); }
+.sns_title h2 { font-family: "Courier New", monospace; font-weight: 900; }
+.sns_list { gap: 13px; }
+.sns_list a {
+    width: 48px; height: 48px; border: 3px solid var(--pixel-ink); border-radius: 0;
+    background-size: 28px; box-shadow: 4px 4px 0 var(--pixel-ink); image-rendering: pixelated;
+}
+.sns_list a:nth-child(1) { background-color: var(--pixel-yellow); }
+.sns_list a:nth-child(2) { background-color: var(--pixel-mint); }
+.sns_list a:nth-child(3) { background-color: #fff; }
+.sns_list a:nth-child(4) { background-color: #FFB7A8; }
+.theme_switcher select {
+    border: 3px solid var(--pixel-ink); border-radius: 0;
+    background: var(--pixel-yellow); color: var(--pixel-ink);
+    font-family: "Courier New", monospace; box-shadow: 3px 3px 0 var(--pixel-ink);
+}
+@media (max-width: 389px) {
+    main { margin: 56px 20px 0; padding: 22px 16px; }
+    .login_link { gap: 7px; font-size: 1.15rem; }
+    .login_link a { gap: 7px; }
+    .sns_list { gap: 9px; }
+}
