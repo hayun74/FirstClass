@@ -1,0 +1,186 @@
+/* Neo Brutalism theme for Melon login page */
+:root {
+    --neo-yellow: #FFE600;
+    --neo-pink: #FF5C8A;
+    --neo-blue: #54D6FF;
+    --neo-green: #00D66B;
+    --neo-black: #111111;
+    --neo-paper: #FFFDF5;
+}
+
+body {
+    background-color: var(--neo-yellow);
+    color: var(--neo-black);
+}
+
+#wrap {
+    background-color: var(--neo-yellow);
+    color: var(--neo-black);
+}
+
+header {
+    width: calc(100% - 40px);
+    height: 64px;
+    margin: 28px auto 0;
+    border: 3px solid var(--neo-black);
+    background-color: var(--neo-pink);
+    box-shadow: 6px 6px 0 var(--neo-black);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+}
+
+.prev_btn {
+    left: 8px;
+    top: 8px;
+    border: 2px solid var(--neo-black);
+    background-color: var(--neo-yellow);
+    background-size: 28px;
+}
+
+main {
+    max-width: 390px;
+    margin: 72px auto 0;
+    padding: 28px 24px;
+    border: 3px solid var(--neo-black);
+    background-color: var(--neo-paper);
+    box-shadow: 8px 8px 0 var(--neo-black);
+}
+
+.email_login label {
+    font-weight: 800;
+}
+
+input[type="email"],
+input[type="password"] {
+    height: 48px;
+    border: 3px solid var(--neo-black);
+    border-radius: 0;
+    background-color: #FFFFFF;
+    color: var(--neo-black);
+    box-shadow: 3px 3px 0 var(--neo-black);
+}
+
+input[type="password"] {
+    border-radius: 0;
+}
+
+input::placeholder {
+    color: #777777;
+}
+
+input:focus {
+    outline: 3px solid var(--neo-blue);
+    outline-offset: 2px;
+    border-color: var(--neo-black);
+}
+
+.login_option {
+    margin-top: 8px;
+    gap: 20px;
+}
+
+.login_option label {
+    font-weight: 700;
+}
+
+.login_option label span::before {
+    border: 2px solid var(--neo-black);
+    background-color: #FFFFFF;
+}
+
+.login_option .check:checked + span::before {
+    background-color: var(--neo-yellow);
+    background-image: url("../King/img/Checkbox_Active.svg");
+}
+
+.login_btn {
+    height: 52px;
+    border: 3px solid var(--neo-black);
+    border-radius: 0;
+    background-color: var(--neo-green);
+    color: var(--neo-black);
+    font-size: 1.8rem;
+    font-weight: 900;
+    box-shadow: 5px 5px 0 var(--neo-black);
+    cursor: pointer;
+}
+
+.login_btn:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--neo-black);
+}
+
+.login_link {
+    color: var(--neo-black);
+    font-weight: 700;
+}
+
+.login_link a:not(:last-child)::after {
+    width: 2px;
+    background-color: var(--neo-black);
+}
+
+.sns_login {
+    margin-top: 48px;
+}
+
+.sns_title {
+    color: var(--neo-black);
+}
+
+.sns_title span {
+    height: 3px;
+    background-color: var(--neo-black);
+}
+
+.sns_title h2 {
+    font-weight: 800;
+}
+
+.sns_list {
+    gap: 14px;
+}
+
+.sns_list a {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--neo-black);
+    background-color: var(--neo-blue);
+    background-size: 30px;
+    box-shadow: 3px 3px 0 var(--neo-black);
+}
+
+.sns_list a:nth-child(2) {
+    background-color: var(--neo-green);
+}
+
+.sns_list a:nth-child(3) {
+    background-color: var(--neo-pink);
+}
+
+.sns_list a:nth-child(4) {
+    background-color: var(--neo-yellow);
+}
+
+@media (max-width: 389px) {
+    main {
+        margin: 56px 20px 0;
+        padding: 24px 18px;
+    }
+
+    .login_link {
+        gap: 7px;
+        font-size: 1.2rem;
+    }
+
+    .login_link a {
+        gap: 7px;
+    }
+
+    .sns_list {
+        gap: 10px;
+    }
+}
