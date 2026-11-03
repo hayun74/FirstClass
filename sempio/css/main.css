@@ -700,123 +700,92 @@ a {
 
 
 
-/* 공지사항 */
-.notice-section {
-    padding: 100px 24px;
+/* 소식 */
+.news-section {
+    padding: 120px 24px 130px;
     box-sizing: border-box;
     background: #fff;
 }
-.notice-section__inner {
+.news-section__inner {
     width: 100%;
-    max-width: 1320px;
+    max-width: 730px;
     margin: 0 auto;
 }
-.notice-section__heading {
+.news-section__heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    margin-bottom: 160px;
+    margin-bottom: 90px;
 }
-.notice-section__heading h2 {
+.news-section__heading h2 {
     margin: 0;
     color: #b61c21;
-    font-size: 50px;
-    font-weight: 600;
-    line-height: 1.22;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
     letter-spacing: -0.04em;
 }
-.notice-section__more {
+.news-section__more {
     flex-shrink: 0;
     color: #666;
-    font-size: 20px;
+    font-size: 12px;
     line-height: 1.5;
-    letter-spacing: -0.015em;
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
 }
-.notice-list {
+.news-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
 }
-.notice-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.news-card {
+    display: block;
     min-width: 0;
-    min-height: 402px;
-    padding: 30px;
-    box-sizing: border-box;
-    overflow: hidden;
-    border-radius: 10px;
-    color: #171717;
-    background: #F7F7F7;
+    color: #111;
     text-decoration: none;
-    transition: background-color .2s ease, transform .2s ease;
 }
-.notice-card:hover {
-    background: #f1f1f1;
-    transform: translateY(-4px);
-}
-.notice-card__main h3 {
-    display: -webkit-box;
-    margin: 0 0 24px;
+.news-card__image {
+    width: 100%;
+    aspect-ratio: 1.42 / 1;
+    margin-bottom: 12px;
     overflow: hidden;
-    color: #171717;
-    font-size: 25px;
+    border-radius: 6px;
+    background: #f2f2f2;
+}
+.news-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+}
+.news-card:hover .news-card__image img {
+    transform: scale(1.04);
+}
+.news-card time {
+    display: block;
+    margin-bottom: 8px;
+    color: #111;
+    font-size: 11px;
     font-weight: 500;
-    line-height: 1.35;
-    letter-spacing: -0.035em;
-    word-break: keep-all;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-.notice-card__main p {
-    display: -webkit-box;
-    margin: 0;
-    overflow: hidden;
-    color: #666;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    word-break: keep-all;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-.notice-card__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    color: #666;
-    font-size: 18px;
     line-height: 1.4;
 }
-.notice-card__plus {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 20px;
-    width: 20px;
-    height: 20px;
-    color: #171717;
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 1;
-}
-@media (max-width: 1100px) {
-    .notice-section__heading { margin-bottom: 80px; }
-    .notice-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.news-card h3 {
+    margin: 0;
+    color: #111;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.035em;
+    word-break: keep-all;
 }
 @media (max-width: 768px) {
-    .notice-section { padding: 72px 20px; }
-    .notice-section__heading { margin-bottom: 36px; }
-    .notice-section__heading h2 { font-size: 36px; }
-    .notice-section__more { font-size: 15px; }
-    .notice-list { grid-template-columns: 1fr; gap: 14px; }
-    .notice-card { min-height: 250px; padding: 24px; }
-    .notice-card__main h3 { font-size: 21px; }
-    .notice-card__main p,
-    .notice-card__footer { font-size: 15px; }
+    .news-section { padding: 72px 20px 80px; }
+    .news-section__heading { margin-bottom: 36px; }
+    .news-section__heading h2 { font-size: 28px; }
+    .news-list { grid-template-columns: 1fr; gap: 28px; }
+    .news-card__image { aspect-ratio: 1.6 / 1; margin-bottom: 10px; }
+    .news-card time { font-size: 12px; }
+    .news-card h3 { font-size: 14px; }
 }
