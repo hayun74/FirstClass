@@ -729,7 +729,7 @@ a {
 .news-section__more {
     flex-shrink: 0;
     color: #666;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.5;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -737,7 +737,7 @@ a {
 .news-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
+    gap: 16px;
 }
 .news-card {
     display: block;
