@@ -827,14 +827,14 @@ a {
 .notice-list {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 24px;
+    gap: 25px;
 }
 .notice-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px;
-    padding: 28px;
+    min-height: 370px;
+    padding: 45px;
     box-sizing: border-box;
     border-radius: 10px;
     color: #222;
