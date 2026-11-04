@@ -175,19 +175,22 @@
                         <a href="#" class="our-flavor__more">더 알아보기</a>
                     </div>
                     <div class="our-flavor__cards">
-                        <a class="our-flavor-card" href="#" style="--card-image: url('img/urimat01.png');" aria-label="레시피 자세히 보기">
+                        <a class="our-flavor-card" href="#" aria-label="레시피 자세히 보기">
+                            <img class="our-flavor-card__image" src="img/urimat01.png" alt="레시피 이미지">
                             <div class="our-flavor-card__content">
                                 <h3>레시피</h3>
                                 <p>샘표의 우리맛 연구를 통해 알게 된<br>우리 식재료의 레시피입니다.</p>
                             </div>
                         </a>
-                        <a class="our-flavor-card" href="#" style="--card-image: url('img/urimat02.png');" aria-label="우리맛 연구 자세히 보기">
+                        <a class="our-flavor-card" href="#" aria-label="우리맛 연구 자세히 보기">
+                            <img class="our-flavor-card__image" src="img/urimat02.png" alt="우리맛 연구 이미지">
                             <div class="our-flavor-card__content">
                                 <h3>우리맛 연구</h3>
                                 <p>우리 식재료의 새로운 가능성을 발견하고<br>더 맛있는 우리맛을 연구합니다.</p>
                             </div>
                         </a>
-                        <a class="our-flavor-card" href="#" style="--card-image: url('img/urimat03.png');" aria-label="우리맛 체험 자세히 보기">
+                        <a class="our-flavor-card" href="#" aria-label="우리맛 체험 자세히 보기">
+                            <img class="our-flavor-card__image" src="img/urimat03.png" alt="우리맛 체험 이미지">
                             <div class="our-flavor-card__content">
                                 <h3>우리맛 체험</h3>
                                 <p>다양한 체험 프로그램을 통해<br>우리맛을 직접 경험해 보세요.</p>
@@ -406,25 +409,28 @@
 
                 <div class="footer-side">
                     <div class="footer-selects">
-                        <label class="sr-only" for="related-sites">관련사이트</label>
-                        <select id="related-sites" class="footer-select" aria-label="관련사이트">
-                            <option value="" selected>관련사이트</option>
-                            <option value="새미네마켓">새미네마켓</option>
-                            <option value="새미네부엌">새미네부엌</option>
-                            <option value="즐겁게 요리해!">즐겁게 요리해!</option>
-                            <option value="연두">연두</option>
-                            <option value="폰타나">폰타나</option>
-                            <option value="티아시아">티아시아</option>
-                            <option value="차오차이">차오차이</option>
-                            <option value="우리맛문화재단">우리맛문화재단</option>
-                            <option value="인재채용">인재채용</option>
-                            <option value="윤리경영">윤리경영</option>
-                        </select>
-                        <label class="sr-only" for="footer-language">언어 선택</label>
-                        <select id="footer-language" class="footer-select" aria-label="언어 선택">
-                            <option value="ko" selected>한국어</option>
-                            <option value="global">GLOBAL</option>
-                        </select>
+                        <div class="footer-dropdown">
+                            <button class="footer-dropdown__trigger" type="button" aria-expanded="false" aria-controls="related-sites-menu">관련사이트 <span aria-hidden="true">⌃</span></button>
+                            <ul class="footer-dropdown__menu" id="related-sites-menu" hidden>
+                                <li><button type="button">새미네마켓</button></li>
+                                <li><button type="button">새미네부엌</button></li>
+                                <li><button type="button">즐겁게 요리해!</button></li>
+                                <li><button type="button">연두</button></li>
+                                <li><button type="button">폰타나</button></li>
+                                <li><button type="button">티아시아</button></li>
+                                <li><button type="button">차오차이</button></li>
+                                <li><button type="button">우리맛문화재단</button></li>
+                                <li><button type="button">인재채용</button></li>
+                                <li><button type="button">윤리경영</button></li>
+                            </ul>
+                        </div>
+                        <div class="footer-dropdown">
+                            <button class="footer-dropdown__trigger" type="button" aria-expanded="false" aria-controls="footer-language-menu">한국어 <span aria-hidden="true">⌃</span></button>
+                            <ul class="footer-dropdown__menu" id="footer-language-menu" hidden>
+                                <li><button type="button">한국어</button></li>
+                                <li><button type="button">GLOBAL</button></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="footer-social" aria-label="샘표 SNS">
                         <a href="#" aria-label="네이버"><img src="img/sns_logo_naver.png" alt=""></a>
@@ -441,6 +447,51 @@
                 <p>This is an unofficial redesign concept for educational purposes.</p>
             </div>
         </footer>
+        <script>
+            (() => {
+                const dropdowns = document.querySelectorAll(".footer-dropdown");
+
+                function closeDropdown(dropdown) {
+                    const trigger = dropdown.querySelector(".footer-dropdown__trigger");
+                    const menu = dropdown.querySelector(".footer-dropdown__menu");
+                    menu.hidden = true;
+                    trigger.setAttribute("aria-expanded", "false");
+                    dropdown.classList.remove("is-open");
+                }
+
+                dropdowns.forEach((dropdown) => {
+                    const trigger = dropdown.querySelector(".footer-dropdown__trigger");
+                    const menu = dropdown.querySelector(".footer-dropdown__menu");
+
+                    trigger.addEventListener("click", () => {
+                        const willOpen = menu.hidden;
+                        dropdowns.forEach(closeDropdown);
+                        if (willOpen) {
+                            menu.hidden = false;
+                            trigger.setAttribute("aria-expanded", "true");
+                            dropdown.classList.add("is-open");
+                        }
+                    });
+
+                    menu.querySelectorAll("button").forEach((option) => {
+                        option.addEventListener("click", () => {
+                            trigger.firstChild.textContent = option.textContent + " ";
+                            closeDropdown(dropdown);
+                        });
+                    });
+                });
+
+                document.addEventListener("click", (event) => {
+                    dropdowns.forEach((dropdown) => {
+                        if (!dropdown.contains(event.target)) closeDropdown(dropdown);
+                    });
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") dropdowns.forEach(closeDropdown);
+                });
+            })();
+        </script>
     </div>
 </body>
 </html>
