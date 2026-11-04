@@ -406,7 +406,7 @@ a {
 .best-products {
     --circle: clamp(160px, 14.58vw, 280px);
     --circle-main: calc(var(--circle) * 1.25);
-    --fill: 78%;
+    --fill: 88%;
     --arrow: clamp(40px, 4.17vw, 80px);
     padding: 100px 24px 120px;
     background: #F7F7F7;
