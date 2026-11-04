@@ -1326,3 +1326,94 @@ a {
     max-width: 26px;
     max-height: 20px;
 }
+
+
+/* 회사 소개 - 핵심 가치 이미지 및 텍스트 정렬 */
+.company-value {
+    grid-template-columns: 670px minmax(0, 1fr);
+    align-items: center;
+    gap: 7%;
+}
+.company-value__image {
+    width: 670px;
+    height: 446px;
+    max-width: 100%;
+}
+.company-value__image img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+}
+.company-value__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.company-value__text h3 {
+    margin: 0 0 24px;
+    color: #B61C21;
+    font-weight: 700;
+    text-align: center;
+}
+.company-value__text > p:last-child {
+    color: #171717;
+    font-weight: 400;
+    text-align: center;
+}
+.company-value__text > p:last-child strong {
+    font-weight: 600;
+}
+.company-value--reverse {
+    grid-template-columns: minmax(0, 1fr) 670px;
+}
+.company-value--reverse .company-value__image {
+    grid-column: 2;
+    grid-row: 1;
+}
+.company-value--reverse .company-value__text {
+    grid-column: 1;
+    grid-row: 1;
+}
+@media (max-width: 1400px) {
+    .company-value {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+        gap: 5%;
+    }
+    .company-value--reverse {
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    }
+    .company-value__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 670 / 446;
+    }
+    .company-value__image img {
+        aspect-ratio: auto;
+    }
+}
+@media (max-width: 768px) {
+    .company-value,
+    .company-value--reverse {
+        grid-template-columns: 1fr;
+    }
+    .company-value__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 670 / 446;
+    }
+    .company-value__text {
+        align-items: center;
+        text-align: center;
+    }
+    .company-value__text h3 {
+        margin-bottom: 14px;
+        font-size: 25px;
+    }
+    .company-value__text > p:last-child {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+}
