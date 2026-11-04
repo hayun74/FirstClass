@@ -571,7 +571,7 @@ a {
 .our-flavor__more {
     flex-shrink: 0;
     color: #666;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: underline;
     text-underline-offset: 4px;
 }
