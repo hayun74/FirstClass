@@ -1488,3 +1488,49 @@ a {
 .notice-card {
     border-radius: 20px;
 }
+
+
+/* 제품 카테고리 탭과 한 칸씩 이동하는 제품 캐러셀 */
+.product-category-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.product-category-tabs .product-category {
+    min-width: 150px;
+    min-height: 58px;
+    padding: 0 34px;
+    border: 0;
+    border-radius: 999px;
+    color: #ED1C24;
+    background: #fff;
+    font-family: inherit;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .2s ease, background-color .2s ease;
+}
+.product-category-tabs .product-category.is-active {
+    color: #fff;
+    background: #ED1C24;
+}
+.product-list.is-sliding .product-card {
+    animation: product-step-slide .32s ease;
+}
+@keyframes product-step-slide {
+    from { opacity: .35; transform: translateX(22px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.product-card__image img {
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .product-category-tabs { gap: 8px; }
+    .product-category-tabs .product-category {
+        min-width: 112px;
+        min-height: 46px;
+        padding: 0 22px;
+        font-size: 19px;
+    }
+}
