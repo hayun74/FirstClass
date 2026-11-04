@@ -138,7 +138,10 @@
                         <h2 id="best-products-title" class="best-products__title">매일의 맛을 완성하는<br>샘표의 <strong>Best 제품</strong></h2>
                         </div>
                         <div class="product-category-switch">
-                            <p class="product-category" aria-live="polite">간장</p>
+                            <div class="product-category-tabs" role="tablist" aria-label="제품 종류">
+                                <button class="product-category is-active" type="button" role="tab" aria-selected="true" data-product-set="soy">간장</button>
+                                <button class="product-category" type="button" role="tab" aria-selected="false" data-product-set="sauce">양념</button>
+                            </div>
                             <a href="#" class="best-products__more">더 알아보기</a>
                         </div>
 
@@ -333,29 +336,42 @@
                             products: [
                                 { image: "img/product01.png", alt: "샘표 진간장 금F3", name: "샘표 진간장 금F3", description: "간장 브랜드 1위, 대한민국 주부들이 가장 사랑하는 1등간장입니다." },
                                 { image: "img/product02.png", alt: "샘표 양조간장 501", name: "샘표 양조간장 501", description: "대한민국 주부들이 가장 사랑하는 1등 양조간장입니다." },
-                                { image: "img/product03.png", alt: "샘표 양조간장 701", name: "샘표 양조간장 701", description: "맛과 향이 풍부한 정통 프리미엄 양조간장입니다." }
+                                { image: "img/product03.png", alt: "샘표 양조간장 701", name: "샘표 양조간장 701", description: "맛과 향이 풍부한 정통 프리미엄 양조간장입니다." },
+                                { image: "img/product04.png", alt: "샘표 간장 제품 4", name: "샘표 간장 제품 4", description: "샘표의 다양한 간장 제품을 만나보세요." },
+                                { image: "img/product05.png", alt: "샘표 간장 제품 5", name: "샘표 간장 제품 5", description: "샘표의 다양한 간장 제품을 만나보세요." },
+                                { image: "img/product06.png", alt: "샘표 간장 제품 6", name: "샘표 간장 제품 6", description: "샘표의 다양한 간장 제품을 만나보세요." }
                             ]
                         },
                         sauce: {
                             category: "양념",
                             products: [
-                                { image: "img/product05.png", alt: "샘표 춘천 닭갈비 양념", name: "샘표 춘천 닭갈비 양념", description: "푸짐하게 볶아 먹던 춘천 닭갈비를 간편하게 즐길 수 있는 요리 양념입니다." },
-                                { image: "img/product04.png", alt: "샘표 발라먹고 찍어먹는 닭꼬치 양념", name: "샘표 발라먹고 찍어먹는 떡꼬치 양념", description: "남녀노소 모두가 좋아하는 추억의 그 맛! 떡꼬치는 물론, 치킨이나 너겟에도 어울리는 만능 양념, 떡꼬치 양념입니다." },
-                                { image: "img/product06.png", alt: "샘표 안동찜닭 양념", name: "샘표 안동찜닭 양념", description: "안동의 대표 음식 찜닭의 다채로운 풍미를 간편하게 즐길 수 있는 요리 양념입니다." }
+                                { image: "img/product07.png", alt: "샘표 양념 제품 1", name: "샘표 양념 제품 1", description: "샘표의 다양한 양념 제품을 만나보세요." },
+                                { image: "img/product08.png", alt: "샘표 양념 제품 2", name: "샘표 양념 제품 2", description: "샘표의 다양한 양념 제품을 만나보세요." },
+                                { image: "img/product09.png", alt: "샘표 양념 제품 3", name: "샘표 양념 제품 3", description: "샘표의 다양한 양념 제품을 만나보세요." },
+                                { image: "img/product10.png", alt: "샘표 양념 제품 4", name: "샘표 양념 제품 4", description: "샘표의 다양한 양념 제품을 만나보세요." },
+                                { image: "img/product11.png", alt: "샘표 양념 제품 5", name: "샘표 양념 제품 5", description: "샘표의 다양한 양념 제품을 만나보세요." },
+                                { image: "img/product12.png", alt: "샘표 양념 제품 6", name: "샘표 양념 제품 6", description: "샘표의 다양한 양념 제품을 만나보세요." }
                             ]
                         }
                     };
 
                     let currentSet = "soy";
-                    const category = productSection.querySelector(".product-category");
+                    let currentIndex = 0;
+                    const categoryTabs = [...productSection.querySelectorAll("[data-product-set]")];
                     const cards = [...productSection.querySelectorAll(".product-card")];
+                    const productList = productSection.querySelector(".product-list");
 
-                    function renderProducts(setName) {
-                        const set = productSets[setName];
-                        category.textContent = set.category;
+                    function renderProducts() {
+                        const products = productSets[currentSet].products;
+                        categoryTabs.forEach((tab) => {
+                            const active = tab.dataset.productSet === currentSet;
+                            tab.classList.toggle("is-active", active);
+                            tab.setAttribute("aria-selected", String(active));
+                        });
 
-                        cards.forEach((card, index) => {
-                            const product = set.products[index];
+                        cards.forEach((card, position) => {
+                            const productIndex = (currentIndex + position) % products.length;
+                            const product = products[productIndex];
                             const image = card.querySelector("img");
                             image.src = product.image;
                             image.alt = product.alt;
@@ -364,13 +380,26 @@
                         });
                     }
 
-                    function changeSet() {
-                        currentSet = currentSet === "soy" ? "sauce" : "soy";
-                        renderProducts(currentSet);
+                    function moveProducts(direction) {
+                        const products = productSets[currentSet].products;
+                        currentIndex = (currentIndex + direction + products.length) % products.length;
+                        productList.classList.remove("is-sliding");
+                        void productList.offsetWidth;
+                        productList.classList.add("is-sliding");
+                        renderProducts();
                     }
 
-                    productSection.querySelector(".product-arrow--prev").addEventListener("click", changeSet);
-                    productSection.querySelector(".product-arrow--next").addEventListener("click", changeSet);
+                    categoryTabs.forEach((tab) => {
+                        tab.addEventListener("click", () => {
+                            currentSet = tab.dataset.productSet;
+                            currentIndex = 0;
+                            renderProducts();
+                        });
+                    });
+
+                    productSection.querySelector(".product-arrow--prev").addEventListener("click", () => moveProducts(-1));
+                    productSection.querySelector(".product-arrow--next").addEventListener("click", () => moveProducts(1));
+                    renderProducts();
                 })();
             </script>
         </main>
