@@ -1482,3 +1482,9 @@ a {
 .sns-card {
     border-radius: 20px;
 }
+
+
+/* 공지사항 카드 모서리 라운드 */
+.notice-card {
+    border-radius: 20px;
+}
