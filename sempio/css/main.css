@@ -1473,3 +1473,12 @@ a {
         line-height: 1.7;
     }
 }
+
+
+/* 이미지 모서리 라운드 통일: 기존 10px에서 20px로 변경 */
+.company-value__image,
+.our-flavor-card,
+.news-card__image,
+.sns-card {
+    border-radius: 20px;
+}
