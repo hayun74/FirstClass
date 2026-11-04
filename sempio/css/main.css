@@ -1218,3 +1218,111 @@ a {
     }
     .footer-bottom p { font-size: 11px; }
 }
+
+
+/* 우리맛 카드 이미지가 항상 보이도록 실제 img 요소로 표시 */
+.our-flavor-card {
+    position: relative;
+    background: #333;
+}
+.our-flavor-card__image {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .65s ease;
+}
+.our-flavor-card::before {
+    content: none;
+}
+.our-flavor-card::after {
+    z-index: 1;
+    background: rgba(0, 0, 0, .48);
+}
+.our-flavor-card__content {
+    position: relative;
+    z-index: 2;
+}
+.our-flavor-card:hover .our-flavor-card__image,
+.our-flavor-card:focus-visible .our-flavor-card__image {
+    transform: scale(1.07);
+}
+
+/* 푸터 드롭다운: 두 메뉴 모두 위쪽으로 열림 */
+.footer-dropdown {
+    position: relative;
+    min-width: 0;
+}
+.footer-dropdown__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    padding: 0 9px;
+    border: 1px solid #cfcfcf;
+    border-radius: 0;
+    color: #666;
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+.footer-dropdown__trigger span {
+    margin-left: 8px;
+    font-size: 15px;
+    line-height: 1;
+    transition: transform .2s ease;
+}
+.footer-dropdown.is-open .footer-dropdown__trigger span {
+    transform: rotate(180deg);
+}
+.footer-dropdown__menu {
+    position: absolute;
+    z-index: 20;
+    right: 0;
+    bottom: calc(100% + 6px);
+    left: 0;
+    max-height: 260px;
+    margin: 0;
+    padding: 5px 0;
+    overflow-y: auto;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    list-style: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .16);
+}
+.footer-dropdown__menu[hidden] {
+    display: none;
+}
+.footer-dropdown__menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 0;
+    color: #555;
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+.footer-dropdown__menu button:hover,
+.footer-dropdown__menu button:focus-visible {
+    color: #B61C21;
+    background: #f5f5f5;
+}
+.footer-social a:last-child {
+    width: 26px;
+}
+.footer-social a:last-child img {
+    width: 26px;
+    height: 20px;
+    max-width: 26px;
+    max-height: 20px;
+}
