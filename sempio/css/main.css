@@ -1490,21 +1490,22 @@ a {
 }
 
 
-/* 제품 카테고리 탭과 한 칸씩 이동하는 제품 캐러셀 */
 .product-category-tabs {
+    grid-column: 2;                 /* [변경] 가운데 칸에 배치 → 탭이 중앙으로 옴 */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
 }
 .product-category-tabs .product-category {
+    grid-column: auto;
     min-width: 150px;
     min-height: 58px;
     padding: 0 34px;
     border: 0;
     border-radius: 999px;
-    color: #ED1C24;
-    background: #fff;
+    color: #666666;                 /* [변경] 선택 안 된 탭 글자색 */
+    background: #E5E5E5;            /* [변경] 선택 안 된 탭 배경색 */
     font-family: inherit;
     font-size: 25px;
     font-weight: 600;
@@ -1513,18 +1514,20 @@ a {
 }
 .product-category-tabs .product-category.is-active {
     color: #fff;
-    background: #ED1C24;
+    background: #ED1C24;            /* 선택된 탭은 그대로 */
 }
-.product-list.is-sliding .product-card {
-    animation: product-step-slide .32s ease;
+ 
+/* [추가] 제품 목록 높이 고정: 설명 줄 수와 상관없이 화살표·배경이 움직이지 않음 */
+.product-list {
+    height: calc(var(--circle-main) + 130px);
 }
-@keyframes product-step-slide {
-    from { opacity: .35; transform: translateX(22px); }
-    to { opacity: 1; transform: translateX(0); }
-}
+ 
+/* [삭제됨] .is-sliding 흔들림 애니메이션과 @keyframes product-step-slide 는 넣지 않습니다 */
+ 
 .product-card__image img {
     object-fit: contain;
 }
+ 
 @media (max-width: 768px) {
     .product-category-tabs { gap: 8px; }
     .product-category-tabs .product-category {
@@ -1533,4 +1536,5 @@ a {
         padding: 0 22px;
         font-size: 19px;
     }
+    .product-list { height: auto; }     /* [추가] 모바일은 높이 고정 해제 */
 }
