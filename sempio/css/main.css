@@ -1417,3 +1417,183 @@ a {
         line-height: 1.7;
     }
 }
+
+
+/* 베스트 제품 - 원형 제품 이미지와 좌우 이동 버튼 */
+.best-products {
+    padding: 90px 24px 110px;
+    background: #F7F7F7;
+}
+.best-products__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+.best-products__heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: left;
+}
+.best-products__eyebrow {
+    display: none;
+}
+.best-products__title {
+    margin: 0;
+    color: #171717;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.04em;
+}
+.best-products__title strong {
+    color: #B61C21;
+    font-weight: 700;
+}
+.product-category-switch {
+    display: flex;
+    justify-content: center;
+    margin: 58px 0 76px;
+}
+.product-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    min-height: 58px;
+    margin: 0;
+    padding: 0 34px;
+    border-radius: 999px;
+    color: #fff;
+    background: #ED1C24;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+.product-showcase {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr) 68px;
+    align-items: center;
+    gap: 28px;
+}
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 40px;
+}
+.product-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.product-card__image {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto 22px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+.product-card:nth-child(2) .product-card__image {
+    width: 300px;
+    height: 300px;
+}
+.product-card__image img {
+    display: block;
+    width: 82%;
+    height: 88%;
+    object-fit: contain;
+    object-position: center bottom;
+    transition: transform .35s ease;
+}
+.product-card:nth-child(2) .product-card__image img {
+    width: 84%;
+    height: 90%;
+}
+.product-card:hover .product-card__image img {
+    transform: scale(1.04);
+}
+.product-card h3 {
+    margin: 0 0 12px;
+    color: #171717;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+.product-card p {
+    max-width: 290px;
+    margin: 0;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.65;
+    word-break: keep-all;
+}
+.product-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    padding: 0 0 5px;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: #A9A9A9;
+    font-family: Arial, sans-serif;
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+.product-arrow:hover {
+    background: #888;
+}
+@media (max-width: 1100px) {
+    .product-showcase {
+        grid-template-columns: 48px minmax(0, 1fr) 48px;
+        gap: 14px;
+    }
+    .product-arrow {
+        width: 48px;
+        height: 48px;
+        font-size: 42px;
+    }
+    .product-list { gap: 18px; }
+    .product-card__image {
+        width: min(22vw, 240px);
+        height: min(22vw, 240px);
+    }
+    .product-card:nth-child(2) .product-card__image {
+        width: min(28vw, 300px);
+        height: min(28vw, 300px);
+    }
+}
+@media (max-width: 768px) {
+    .best-products { padding: 72px 20px 80px; }
+    .best-products__title { font-size: 30px; }
+    .product-category-switch { margin: 30px 0 42px; }
+    .product-category { min-width: 120px; min-height: 48px; font-size: 21px; }
+    .product-showcase {
+        grid-template-columns: 36px minmax(0, 1fr) 36px;
+        gap: 8px;
+    }
+    .product-list {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .product-card:not(:nth-child(2)) { display: none; }
+    .product-card:nth-child(2) .product-card__image {
+        width: min(68vw, 280px);
+        height: min(68vw, 280px);
+        margin-bottom: 18px;
+    }
+    .product-arrow { width: 36px; height: 36px; font-size: 32px; }
+    .product-card h3 { font-size: 19px; }
+    .product-card p { font-size: 14px; }
+}
