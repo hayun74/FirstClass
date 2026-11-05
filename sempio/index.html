@@ -149,8 +149,8 @@
                         <button class="product-arrow product-arrow--prev" type="button" aria-label="이전 제품 보기">
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <div class="product-list swiper-wrapper" aria-live="polite">
-                        <article class="product-card swiper-slide">
+                        <div class="product-list" aria-live="polite">
+                        <article class="product-card">
                             <div class="product-card__image"><img src="img/product02.png" alt="샘표 진간장 금F3"></div>
                             <h3>샘표 진간장 금F3</h3>
                             <p>간장 브랜드 1위, 대한민국 주부들이 가장 사랑하는 1등간장입니다.</p>
@@ -325,106 +325,83 @@
                     </div>
                 </div>
             </section>
-            <script src="../npm/swiper/swiper-bundle.min.js"></script>
             <script>
                 (() => {
-                    const section = document.querySelector(".best-products");
-                    if (!section || typeof Swiper === "undefined") return;
+                    const productSection = document.querySelector(".best-products");
+                    if (!productSection) return;
 
-                    const productsByCategory = {
-                        soy: [
-                            { image: "product01.png", alt: "샘표 진간장 금F3", name: "샘표 진간장 금F3", description: "간장 브랜드 1위, 대한민국 주부들이 가장 사랑하는 1등간장입니다." },
-                            { image: "product02.png", alt: "샘표 양조간장 501", name: "샘표 양조간장 501", description: "대한민국 주부들이 가장 사랑하는 1등 양조간장입니다." },
-                            { image: "product03.png", alt: "샘표 양조간장 701", name: "샘표 양조간장 701", description: "맛과 향이 풍부한 정통 프리미엄 양조간장입니다." },
-                            { image: "product04.png", alt: "샘표 진간장 금S", name: "샘표 진간장 금S", description: "깊은 향과 감칠맛으로 요리의 맛을 살려주는 대표 진간장입니다." },
-                            { image: "product05.png", alt: "샘표 진간장 S", name: "샘표 진간장 S", description: "간장 사용량이 많은 소비자에게 알맞은 경제적인 진간장입니다." },
-                            { image: "product06.png", alt: "샘표 맑은조선간장", name: "샘표 맑은조선간장", description: "샘표의 전통 발효 방식으로 만든 조선간장입니다." }
-                        ],
-                        sauce: [
-                            { image: "product07.png", alt: "요리에센스 연두순", name: "요리에센스 연두순", description: "재료의 맛과 향이 순하고 양념이 적은 요리에 어울립니다." },
-                            { image: "product08.png", alt: "새미네부엌 겉절이양념", name: "새미네부엌 겉절이양념", description: "절일 필요 없이 간편하게 겉절이를 만들 수 있습니다." },
-                            { image: "product09.png", alt: "샘표 토장", name: "샘표 토장", description: "간장을 빼지 않은 옛날식 된장 그대로의 토장입니다." },
-                            { image: "product10.png", alt: "차오차이 130직화간짜장", name: "차오차이 130직화간짜장", description: "큼직한 재료를 볶아낸 직화 풍미를 즐겨보세요." },
-                            { image: "product11.png", alt: "티아시아 치킨 마크니 커리", name: "티아시아 치킨 마크니 커리", description: "토마토와 생크림의 풍미가 어우러진 커리입니다." },
-                            { image: "product12.png", alt: "새미네부엌 보쌈김치양념", name: "새미네부엌 보쌈김치양념", description: "간편하게 보쌈김치를 만들 수 있는 양념입니다." }
-                        ]
+                    const productSets = {
+                        soy: {
+                            category: "간장",
+                            products: [
+                                { image: "img/product02.png", alt: "샘표 진간장 금F3", name: "샘표 진간장 금F3", description: "간장 브랜드 1위, 대한민국 주부들이 가장 사랑하는 1등간장입니다." },
+                                { image: "img/product01.png", alt: "샘표 양조간장 501", name: "샘표 양조간장 501", description: "대한민국 주부들이 가장 사랑하는 1등 양조간장입니다." },
+                                { image: "img/product03.png", alt: "샘표 양조간장 701", name: "샘표 양조간장 701", description: "맛과 향이 풍부한 정통 프리미엄 양조간장입니다." },
+                                { image: "img/product04.png", alt: "샘표 진간장 금S", name: "샘표 진간장 금S", description: "깊은 향과 감칠맛으로 요리의 맛을 살려주는 대표 진간장입니다." },
+                                { image: "img/product05.png", alt: "샘표 진간장 S", name: "샘표 진간장 S", description: "간장 사용량이 많은 소비자에게 알맞은 경제적인 진간장입니다." },
+                                { image: "img/product06.png", alt: "샘표 맑은조선간장", name: "샘표 맑은조선간장", description: "샘표 70년 발효기술로 우리의 전통 방식을 계승, 발전한 정통 프리미엄 조선간장입니다." }
+                            ]
+                        },
+                        sauce: {
+                            category: "양념",
+                            products: [
+                                { image: "img/product07.png", alt: "요리에센스 연두순", name: "요리에센스 연두순", description: "재료의 맛과 향이 순하고 양념이 적은 요리에" },
+                                { image: "img/product08.png", alt: "새미네부엌 겉절이양념", name: "새미네부엌 겉절이양념", description: "절일 필요 없이 김치 끝! 모든 김치양념이 한팩에 쏙!" },
+                                { image: "img/product09.png", alt: "샘표 토장", name: "샘표 토장", description: "간장을 빼지 않은 옛날식 된장 그대로의 토장입니다." },
+                                { image: "img/product10.png", alt: "차오차이 130직화간짜장", name: "차오차이 130직화간짜장", description: "큼직한 고기, 양파, 춘장을 130도로 볶아낸 직화 풍미" },
+                                { image: "img/product11.png", alt: "티아시아 치킨 마크니 커리", name: "티아시아 치킨 마크니 커리", description: "상큼한 토마토와 고소한 생크림이 입맛을 돋우는 치킨 마크니 커리" },
+                                { image: "img/product12.png", alt: "새미네부엌 보쌈김치양념", name: "새미네부엌 보쌈김치양념", description: "절일 필요 없이 김치 끝! 모든 김치양념이 한팩에 쏙!" }
+                            ]
+                        }
                     };
 
-                    const tabs = [...section.querySelectorAll("[data-product-set]")];
-                    const wrapper = section.querySelector(".product-list");
-                    const prevButton = section.querySelector(".product-arrow--prev");
-                    const nextButton = section.querySelector(".product-arrow--next");
-                    let swiper;
+                    let currentSet = "soy";
+                    let currentIndex = 0;
+                    const categoryTabs = [...productSection.querySelectorAll("[data-product-set]")];
+                    const cards = [...productSection.querySelectorAll(".product-card")];
+                    const productList = productSection.querySelector(".product-list");
 
-                    function renderSlides(category) {
-                        wrapper.innerHTML = productsByCategory[category].map((product) => `
-                            <article class="product-card swiper-slide">
-                                <div class="product-card__image">
-                                    <img src="img/${product.image}" alt="${product.alt}">
-                                </div>
-                                <h3>${product.name}</h3>
-                                <p>${product.description}</p>
-                            </article>
-                        `).join("");
+                    function renderProducts() {
+                        const products = productSets[currentSet].products;
+                        categoryTabs.forEach((tab) => {
+                            const active = tab.dataset.productSet === currentSet;
+                            tab.classList.toggle("is-active", active);
+                            tab.setAttribute("aria-selected", String(active));
+                        });
 
-                        if (swiper) {
-                            swiper.destroy(true, true);
-                        }
-
-                        swiper = new Swiper(".product-showcase .product-list", {
-                            slidesPerView: 3,
-                            centeredSlides: true,
-                            loop: true,
-                            speed: 600,
-                            spaceBetween: 40,
-                            watchSlidesProgress: true,
-                            navigation: {
-                                prevEl: prevButton,
-                                nextEl: nextButton
-                            },
-                            breakpoints: {
-                                0: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 16
-                                },
-                                769: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 24
-                                },
-                                1101: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 40
-                                }
-                            },
-                            on: {
-                                init: function () {
-                                    this.slides.forEach((slide) => slide.classList.remove("is-center"));
-                                    this.slides[this.activeIndex]?.classList.add("is-center");
-                                },
-                                slideChange: function () {
-                                    this.slides.forEach((slide) => slide.classList.remove("is-center"));
-                                    this.slides[this.activeIndex]?.classList.add("is-center");
-                                }
-                            }
+                        cards.forEach((card, position) => {
+                            const productIndex = (currentIndex + position) % products.length;
+                            const product = products[productIndex];
+                            const image = card.querySelector("img");
+                            image.src = product.image;
+                            image.alt = product.alt;
+                            card.querySelector("h3").textContent = product.name;
+                            card.querySelector("p").textContent = product.description;
                         });
                     }
 
-                    tabs.forEach((tab) => {
+                    function moveProducts(direction) {
+                        const products = productSets[currentSet].products;
+                        currentIndex = (currentIndex + direction + products.length) % products.length;
+                        productList.classList.remove("is-sliding");
+                        void productList.offsetWidth;
+                        productList.classList.add("is-sliding");
+                        renderProducts();
+                    }
+
+                    categoryTabs.forEach((tab) => {
                         tab.addEventListener("click", () => {
-                            const category = tab.dataset.productSet;
-                            tabs.forEach((item) => {
-                                const active = item === tab;
-                                item.classList.toggle("is-active", active);
-                                item.setAttribute("aria-selected", String(active));
-                            });
-                            renderSlides(category);
+                            currentSet = tab.dataset.productSet;
+                            currentIndex = 0;
+                            renderProducts();
                         });
                     });
 
-                    wrapper.classList.add("swiper-wrapper");
-                    renderSlides("soy");
+                    productSection.querySelector(".product-arrow--prev").addEventListener("click", () => moveProducts(-1));
+                    productSection.querySelector(".product-arrow--next").addEventListener("click", () => moveProducts(1));
+                    renderProducts();
                 })();
-            </script>   </script>
+            </script>
         </main>
         <footer class="site-footer">
             <nav class="footer-utility" aria-label="기타 메뉴">
