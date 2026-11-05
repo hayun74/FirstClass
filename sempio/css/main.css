@@ -1175,9 +1175,9 @@ a {
 }
 .footer-bottom {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 4px 48px;
+    flex-direction: column;         /* copyright 위, 안내 문구 두 줄은 아래로 */
+    align-items: flex-start;
+    gap: 4px;
     padding: 22px 0 28px;
     border-top: 1px solid rgba(255, 255, 255, .3);
 }
@@ -1189,6 +1189,7 @@ a {
     line-height: 1.6;
 }
 .footer-bottom .footer-copyright {
+    margin-bottom: 8px;             /* 아래 안내 문구와 살짝 띄움 */
     font-size: 14px;                /* copyright만 14px */
 }
 @media (max-width: 1024px) {
