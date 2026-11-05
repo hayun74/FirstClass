@@ -136,36 +136,25 @@
                 <div class="best-products__inner">
                     <div class="best-products__heading">
                         <h2 id="best-products-title" class="best-products__title">매일의 맛을 완성하는<br>샘표의 <strong>Best 제품</strong></h2>
+                    </div>
+                    <div class="product-category-switch">
+                        <div class="product-category-tabs" role="tablist" aria-label="제품 종류">
+                            <button class="product-category is-active" type="button" role="tab" aria-selected="true" data-product-set="soy">간장</button>
+                            <button class="product-category" type="button" role="tab" aria-selected="false" data-product-set="sauce">양념</button>
                         </div>
-                        <div class="product-category-switch">
-                            <div class="product-category-tabs" role="tablist" aria-label="제품 종류">
-                                <button class="product-category is-active" type="button" role="tab" aria-selected="true" data-product-set="soy">간장</button>
-                                <button class="product-category" type="button" role="tab" aria-selected="false" data-product-set="sauce">양념</button>
-                            </div>
-                            <a href="#" class="best-products__more">더 알아보기</a>
-                        </div>
+                        <a href="#" class="best-products__more">더 알아보기</a>
+                    </div>
 
                     <div class="product-showcase">
                         <button class="product-arrow product-arrow--prev" type="button" aria-label="이전 제품 보기">
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <div class="product-list" aria-live="polite">
-                        <article class="product-card">
-                            <div class="product-card__image"><img src="img/product02.png" alt="샘표 진간장 금F3"></div>
-                            <h3>샘표 진간장 금F3</h3>
-                            <p>간장 브랜드 1위, 대한민국 주부들이 가장 사랑하는 1등간장입니다.</p>
-                        </article>
-                        <article class="product-card">
-                            <div class="product-card__image"><img src="img/product01.png" alt="샘표 양조간장 501"></div>
-                            <h3>샘표 양조간장 501</h3>
-                            <p>대한민국 주부들이 가장 사랑하는 1등 양조간장입니다.</p>
-                        </article>
-                        <article class="product-card">
-                            <div class="product-card__image"><img src="img/product03.png" alt="샘표 양조간장 701"></div>
-                            <h3>샘표 양조간장 701</h3>
-                            <p>맛과 향이 풍부한 정통 프리미엄 양조간장입니다.</p>
-                        </article>
+
+                        <!-- Swiper: 슬라이드는 아래 스크립트가 만들어 넣습니다 -->
+                        <div class="product-swiper swiper">
+                            <div class="swiper-wrapper" aria-live="polite"></div>
                         </div>
+
                         <button class="product-arrow product-arrow--next" type="button" aria-label="다음 제품 보기">
                             <span aria-hidden="true">›</span>
                         </button>
@@ -325,10 +314,13 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Swiper JS: 위에서 걸어 둔 CSS(../npm/swiper/swiper-bundle.min.css)와 같은 폴더의 js 파일 -->
+            <script src="../npm/swiper/swiper-bundle.min.js"></script>
             <script>
                 (() => {
                     const productSection = document.querySelector(".best-products");
-                    if (!productSection) return;
+                    if (!productSection || typeof Swiper === "undefined") return;
 
                     const productSets = {
                         soy: {
@@ -355,51 +347,67 @@
                         }
                     };
 
-                    let currentSet = "soy";
-                    let currentIndex = 0;
                     const categoryTabs = [...productSection.querySelectorAll("[data-product-set]")];
-                    const cards = [...productSection.querySelectorAll(".product-card")];
-                    const productList = productSection.querySelector(".product-list");
+                    const swiperEl = productSection.querySelector(".product-swiper");
+                    const wrapper = swiperEl.querySelector(".swiper-wrapper");
+                    const prevBtn = productSection.querySelector(".product-arrow--prev");
+                    const nextBtn = productSection.querySelector(".product-arrow--next");
 
-                    function renderProducts() {
-                        const products = productSets[currentSet].products;
+                    let currentSet = "soy";
+                    let productSwiper = null;
+
+                    function slideTemplate(product) {
+                        return `
+                            <article class="swiper-slide product-card">
+                                <div class="product-card__image"><img src="${product.image}" alt="${product.alt}"></div>
+                                <h3>${product.name}</h3>
+                                <p>${product.description}</p>
+                            </article>`;
+                    }
+
+                    function renderTabs() {
                         categoryTabs.forEach((tab) => {
                             const active = tab.dataset.productSet === currentSet;
                             tab.classList.toggle("is-active", active);
                             tab.setAttribute("aria-selected", String(active));
                         });
-
-                        cards.forEach((card, position) => {
-                            const productIndex = (currentIndex + position) % products.length;
-                            const product = products[productIndex];
-                            const image = card.querySelector("img");
-                            image.src = product.image;
-                            image.alt = product.alt;
-                            card.querySelector("h3").textContent = product.name;
-                            card.querySelector("p").textContent = product.description;
-                        });
                     }
 
-                    function moveProducts(direction) {
-                        const products = productSets[currentSet].products;
-                        currentIndex = (currentIndex + direction + products.length) % products.length;
-                        productList.classList.remove("is-sliding");
-                        void productList.offsetWidth;
-                        productList.classList.add("is-sliding");
-                        renderProducts();
+                    function buildSwiper() {
+                        if (productSwiper) productSwiper.destroy(true, true);
+                        wrapper.innerHTML = productSets[currentSet].products.map(slideTemplate).join("");
+
+                        productSwiper = new Swiper(swiperEl, {
+                            loop: true,                 // 끝에서 처음으로 이어짐
+                            centeredSlides: true,       // 활성 슬라이드가 항상 가운데
+                            initialSlide: 1,            // 처음엔 두 번째 제품(양조간장 501)이 가운데
+                            slidesPerView: 1,           // 모바일: 1개
+                            spaceBetween: 0,
+                            speed: 450,
+                            slideToClickedSlide: true,  // 옆 제품을 클릭하면 가운데로 이동
+                            navigation: { prevEl: prevBtn, nextEl: nextBtn },
+                            a11y: {                     // Swiper 기본 영어 안내문을 한글로 교체
+                                prevSlideMessage: "이전 제품 보기",
+                                nextSlideMessage: "다음 제품 보기",
+                                slideLabelMessage: "{{slidesLength}}개 중 {{index}}번째 제품"
+                            },
+                            breakpoints: {
+                                769: { slidesPerView: 3 }   // PC/태블릿: 3개
+                            }
+                        });
                     }
 
                     categoryTabs.forEach((tab) => {
                         tab.addEventListener("click", () => {
+                            if (tab.dataset.productSet === currentSet) return;
                             currentSet = tab.dataset.productSet;
-                            currentIndex = 0;
-                            renderProducts();
+                            renderTabs();
+                            buildSwiper();
                         });
                     });
 
-                    productSection.querySelector(".product-arrow--prev").addEventListener("click", () => moveProducts(-1));
-                    productSection.querySelector(".product-arrow--next").addEventListener("click", () => moveProducts(1));
-                    renderProducts();
+                    renderTabs();
+                    buildSwiper();
                 })();
             </script>
         </main>
