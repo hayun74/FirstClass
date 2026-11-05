@@ -1070,13 +1070,21 @@ a {
 }
 
 /* 상단 링크: 회색 칸 없이 빨간 칸 안에 넣음, 세로선 없음 */
+/* 링크(왼쪽) + SNS 아이콘(오른쪽)을 한 줄에 */
+.footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px 40px;
+    padding: 44px 0 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+}
 .footer-utility {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px 36px;
-    padding: 44px 0 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, .3);
 }
 .footer-utility a {
     color: #fff;
@@ -1189,10 +1197,12 @@ a {
 }
 @media (max-width: 768px) {
     .site-footer { padding: 0 20px; }
-    .footer-utility {
-        gap: 10px 20px;
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
         padding: 32px 0 22px;
     }
+    .footer-utility { gap: 10px 20px; }
     .footer-main { padding: 28px 0 32px; }
     .footer-group__lines { gap: 2px 20px; }
     .footer-selects {
@@ -1239,7 +1249,7 @@ a {
     transform: scale(1.07);
 }
 
-/* 푸터 드롭다운: 두 메뉴 모두 위쪽으로 열림 */
+/* 푸터 드롭다운: 두 메뉴 모두 아래쪽으로 열림 */
 .footer-dropdown {
     position: relative;
     min-width: 0;
@@ -1264,16 +1274,17 @@ a {
     margin-left: 8px;
     font-size: 15px;
     line-height: 1;
+    transform: rotate(180deg);      /* 닫힘: 아래 화살표 */
     transition: transform .2s ease;
 }
 .footer-dropdown.is-open .footer-dropdown__trigger span {
-    transform: rotate(180deg);
+    transform: rotate(0deg);        /* 열림: 위 화살표 */
 }
 .footer-dropdown__menu {
     position: absolute;
     z-index: 20;
+    top: calc(100% + 6px);          /* 아래로 열림 */
     right: 0;
-    bottom: calc(100% + 6px);
     left: 0;
     max-height: 260px;
     margin: 0;
