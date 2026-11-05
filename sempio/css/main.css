@@ -476,15 +476,23 @@ a {
     grid-template-columns: var(--arrow) minmax(0, 1fr) var(--arrow);
     align-items: center;
 }
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
-    gap: 0;                      /* 열 폭 385 = 원 중심 간격 385 */
+
+/* Swiper 본체: 슬라이드 3칸 x 385px = 1155px */
+.product-swiper {
+    box-sizing: content-box;
     width: 100%;
     max-width: 1155px;
+    min-width: 0;
+    height: calc(var(--circle-main) + 130px);   /* 높이 고정: 화살표·배경이 움직이지 않음 */
+    padding-bottom: 40px;                       /* 설명이 3줄 이상이어도 잘리지 않게 */
+    margin-bottom: -40px;                       /* 늘어난 padding만큼 레이아웃에서 상쇄 */
     justify-self: center;
 }
+.product-swiper .swiper-slide {
+    height: auto;
+}
+
+/* 슬라이드(제품 카드) */
 .product-card {
     display: flex;
     flex-direction: column;
@@ -496,15 +504,16 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-     width: var(--circle);
+    width: var(--circle);
     height: var(--circle);
-    margin: calc(var(--circle-main) - var(--circle)) auto 0; /* 좌우 원 70px 아래로 */
-    margin-bottom: 0;
+    margin: calc(var(--circle-main) - var(--circle)) auto 0;   /* 좌우 원은 아래로 내려 바닥선을 맞춤 */
     overflow: hidden;
     border-radius: 50%;
     background: #fff;
+    transition: width .45s ease, height .45s ease, margin .45s ease;
 }
-.product-card:nth-child(2) .product-card__image {
+/* 가운데(활성) 슬라이드만 크게 */
+.product-card.swiper-slide-active .product-card__image {
     width: var(--circle-main);
     height: var(--circle-main);
     margin-top: 0;
@@ -569,26 +578,26 @@ a {
         margin: 26px 0 36px;
     }
     .product-category {
-        min-width: 120px; 
-        height: 48px; 
+        min-width: 120px;
+        height: 48px;
         font-size: 21px;
     }
-    .best-products__more { 
-        font-size: 14px; 
+    .best-products__more {
+        font-size: 14px;
     }
     .product-showcase {
-        gap: 8px; 
+        gap: 8px;
     }
-    .product-list {
-        grid-template-columns: 1fr; 
+    .product-swiper {
+        height: auto;
+        padding-bottom: 0;
+        margin-bottom: 0;
     }
-    .product-card:not(:nth-child(2)) {
-        display: none; 
-    }
-    .product-card:nth-child(2) 
-    .product-card__image {
+    .product-card__image,
+    .product-card.swiper-slide-active .product-card__image {
         width: min(68vw, 280px);
         height: min(68vw, 280px);
+        margin: 0 auto;
     }
     .product-card h3 { font-size: 19px; margin-top: 18px; }
     .product-card p { font-size: 14px; line-height: 1.6; }
@@ -1489,7 +1498,7 @@ a {
     border-radius: 20px;
 }
 
-
+/* 제품 카테고리 탭 */
 .product-category-tabs {
     grid-column: 2;                 /* [변경] 가운데 칸에 배치 → 탭이 중앙으로 옴 */
     display: flex;
@@ -1516,18 +1525,7 @@ a {
     color: #fff;
     background: #ED1C24;            /* 선택된 탭은 그대로 */
 }
- 
-/* [추가] 제품 목록 높이 고정: 설명 줄 수와 상관없이 화살표·배경이 움직이지 않음 */
-.product-list {
-    height: calc(var(--circle-main) + 130px);
-}
- 
-/* [삭제됨] .is-sliding 흔들림 애니메이션과 @keyframes product-step-slide 는 넣지 않습니다 */
- 
-.product-card__image img {
-    object-fit: contain;
-}
- 
+
 @media (max-width: 768px) {
     .product-category-tabs { gap: 8px; }
     .product-category-tabs .product-category {
@@ -1536,5 +1534,4 @@ a {
         padding: 0 22px;
         font-size: 19px;
     }
-    .product-list { height: auto; }     /* [추가] 모바일은 높이 고정 해제 */
 }
