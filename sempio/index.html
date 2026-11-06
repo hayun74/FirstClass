@@ -94,8 +94,9 @@
                 </video>
             </section>
 
+            <!-- 회사소개 Vision: fade-in (제자리에서 서서히 나타남) -->
             <section class="company-intro" aria-labelledby="company-vision-title">
-                <div class="company-intro__content">
+                <div class="company-intro__content fade-in">
                     <p class="company-intro__eyebrow">Vision</p>
                     <h2 class="company-intro__title" id="company-vision-title">“ 우리맛으로 세계인을 즐겁게 ”</h2>
                     <p class="company-intro__description">
@@ -106,25 +107,26 @@
                 </div>
             </section>
 
+            <!-- 핵심 가치: fade-up (아래에서 위로 올라오며 이미지와 텍스트가 동시에 나타남) -->
             <section class="company-values" aria-label="샘표의 핵심 가치">
                 <div class="company-values__inner">
                     <article class="company-value">
-                        <div class="company-value__image"><img src="img/company-intro01.png" alt="함께 의견을 나누며 협력하는 구성원들"></div>
-                        <div class="company-value__text">
+                        <div class="company-value__image fade-up"><img src="img/company-intro01.png" alt="함께 의견을 나누며 협력하는 구성원들"></div>
+                        <div class="company-value__text fade-up">
                             <h3>구성원의 행복</h3>
                             <p>임직원 상호 간 인격을 존중하고<br><strong>건강한 조직문화를 구축</strong>해<br>회사와 함께 성장합니다.</p>
                         </div>
                     </article>
                     <article class="company-value company-value--reverse">
-                        <div class="company-value__image"><img src="img/company-intro02.png" alt="지역사회에서 나눔 활동을 하는 모습"></div>
-                        <div class="company-value__text">
+                        <div class="company-value__image fade-up"><img src="img/company-intro02.png" alt="지역사회에서 나눔 활동을 하는 모습"></div>
+                        <div class="company-value__text fade-up">
                             <h3>지역사회에 기여</h3>
                             <p><strong>지역사회의 발전에 기여</strong>함으로써<br>사업적 책임을 완수합니다.</p>
                         </div>
                     </article>
                     <article class="company-value">
-                        <div class="company-value__image"><img src="img/company-intro03.png" alt="전통 장과 한식 재료"></div>
-                        <div class="company-value__text">
+                        <div class="company-value__image fade-up"><img src="img/company-intro03.png" alt="전통 장과 한식 재료"></div>
+                        <div class="company-value__text fade-up">
                             <h3>문화의 다양성</h3>
                             <p><strong>한식의 진정한 가치를 전 세계에 널리 알리고</strong><br>모두가 즐길 수 있도록 우리맛 솔루션을<br>연구합니다.</p>
                         </div>
@@ -544,6 +546,36 @@
                 document.addEventListener("keydown", (event) => {
                     if (event.key === "Escape") dropdowns.forEach(closeDropdown);
                 });
+            })();
+        </script>
+
+        <!-- 회사소개 스크롤 인터랙션: 화면에 보이면 .is-visible 클래스를 붙여 나타냄 -->
+        <script>
+            (() => {
+                const targets = document.querySelectorAll(".fade-in, .fade-up");
+                if (!targets.length) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        const el = entry.target;
+
+                        // 핵심 가치 카드는 이미지와 텍스트가 동시에 나타남
+                        const card = el.closest(".company-value");
+                        if (card) {
+                            card.querySelectorAll(".fade-up").forEach((item) => {
+                                item.classList.add("is-visible");
+                                observer.unobserve(item);
+                            });
+                            return;
+                        }
+
+                        el.classList.add("is-visible");
+                        observer.unobserve(el);   // 한 번만 실행
+                    });
+                }, { threshold: 0.2 });
+
+                targets.forEach((el) => observer.observe(el));
             })();
         </script>
     </div>
