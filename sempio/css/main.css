@@ -992,9 +992,15 @@ a {
     height: 30px;
     border: 1px solid var(--border-strong);
     border-radius: 50%;
-    color: var(--text-secondary);
-    font-size: 20px;
-    line-height: 1;
+}
+/* 아이콘: SVG 파일을 모양(mask)으로 써서 색을 background-color로 바꿀 수 있음 */
+.notice-card__plus::before {
+    width: 14px;
+    height: 14px;
+    background-color: var(--text-secondary);
+    -webkit-mask: url("../img/Plus_one.png") no-repeat center / contain;
+    mask: url("../img/Plus_one.png") no-repeat center / contain;
+    content: "";
 }
 @media (max-width: 1024px) {
     .notice-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
