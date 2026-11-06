@@ -492,14 +492,14 @@ a {
     margin: 60px 0 88px;
 }
 .product-category {
-    padding: 0 4px 8px;                 /* 아래 8px = 글씨와 라인 사이 간격 */
+    padding: 0 0 4px;                   /* 아래 4px = 글씨와 라인 사이 간격 */
     border: 0;
     border-bottom: 2px solid transparent;
     background: transparent;
     color: var(--text-tertiary);                    /* 선택 안 된 탭 글자색 */
     font-family: inherit;
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
 }
 .product-category.is-active {
