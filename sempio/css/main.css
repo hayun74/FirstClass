@@ -1,3 +1,8 @@
+/* 콘텐츠 사이 간격: 이 값 하나로 우리맛 / 공지사항 / 소식 / SNS 간격이 모두 같이 바뀝니다. */
+:root {
+    --content-gap: 20px;
+}
+
 body {
     margin: 0;
     background-color: yellow;
@@ -644,7 +649,7 @@ a {
 }
 .our-flavor__cards {
     display: flex;
-    gap: 24px;
+    gap: var(--content-gap);
     height: 540px;
 }
 .our-flavor-card {
@@ -743,7 +748,7 @@ a {
     }
     .our-flavor__cards {
         flex-direction: column;
-        gap: 14px;
+        gap: var(--content-gap);
         height: auto;
     }
     .our-flavor-card,
@@ -805,7 +810,7 @@ a {
 .news-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: var(--content-gap);
 }
 .news-card {
     display: block;
@@ -852,7 +857,7 @@ a {
     .news-section { padding: 72px 20px 80px; }
     .news-section__heading { margin-bottom: 36px; }
     .news-section__heading h2 { font-size: 28px; }
-    .news-list { grid-template-columns: 1fr; gap: 28px; }
+    .news-list { grid-template-columns: 1fr; gap: var(--content-gap); }
     .news-card__image { aspect-ratio: 1.6 / 1; margin-bottom: 10px; }
     .news-card time { font-size: 12px; }
     .news-card h3 { font-size: 14px; }
@@ -896,7 +901,7 @@ a {
 .notice-list {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 25px;
+    gap: var(--content-gap);
 }
 .notice-card {
     display: flex;
@@ -961,7 +966,7 @@ a {
     .notice-section__heading { margin-bottom: 28px; }
     .notice-section__heading h2 { font-size: 30px; }
     .notice-section__more { font-size: 14px; }
-    .notice-list { grid-template-columns: 1fr; gap: 14px; }
+    .notice-list { grid-template-columns: 1fr; gap: var(--content-gap); }
     .notice-card { min-height: 220px; padding: 24px; }
     .notice-card__main h3 { font-size: 19px; }
 }
@@ -1006,8 +1011,8 @@ a {
     display: grid;
     grid-template-columns: repeat(5, 248px);
     justify-content: space-between;
-    column-gap: 20px;
-    row-gap: 20px;
+    column-gap: var(--content-gap);
+    row-gap: var(--content-gap);
 }
 .sns-card {
     display: block;
@@ -1046,7 +1051,8 @@ a {
     .sns-section__heading { margin-bottom: 36px; }
     .sns-section__heading h2 { font-size: 30px; }
     .sns-section__more { font-size: 14px; }
-    .sns-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .sns-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    :root { --content-gap: 12px; }   /* 모바일: 모든 콘텐츠 간격 12px */
 }
 
 
@@ -1478,5 +1484,57 @@ a {
         min-height: 46px;
         padding: 0 22px;
         font-size: 19px;
+    }
+}
+
+
+/* ===== 추가 1: "더 알아보기" 옆 화살표 (5개 섹션 공통) ===== */
+.best-products__more::after,
+.our-flavor__more::after,
+.notice-section__more::after,
+.news-section__more::after,
+.sns-section__more::after {
+    display: inline-block;          /* inline-block이라 밑줄이 화살표에는 생기지 않음 */
+    margin-left: 8px;
+    content: "→";
+    transition: transform .2s ease;
+}
+.best-products__more:hover::after,
+.our-flavor__more:hover::after,
+.notice-section__more:hover::after,
+.news-section__more:hover::after,
+.sns-section__more:hover::after {
+    transform: translateX(4px);     /* 마우스를 올리면 살짝 오른쪽으로 이동 */
+}
+
+
+/* ===== 추가 2: 회사소개 스크롤 인터랙션 ===== */
+/* Vision 문구: 제자리에서 페이드인만 */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.fade-in.is-visible {
+    opacity: 1;
+}
+
+/* 핵심 가치 이미지·텍스트: 아래에서 위로 올라오며 페이드인 */
+.fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity .9s ease, transform .9s ease;
+}
+.fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 모션 줄이기 설정을 쓰는 사용자는 바로 표시 */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .fade-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
