@@ -1253,8 +1253,10 @@ a {
     content: none;
 }
 .our-flavor-card::after {
-    z-index: 1;
-    background: rgba(0, 0, 0, .48);
+    content: none;                  /* 어두운색 배경(오버레이) 제거 */
+}
+.our-flavor-card h3 {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .35);   /* 어두운 배경을 뺀 대신 글자가 읽히도록 살짝 그림자 */
 }
 .our-flavor-card__content {
     position: relative;
@@ -1451,39 +1453,86 @@ a {
 
 /* 제품 카테고리 탭 */
 .product-category-tabs {
-    grid-column: 2;                 /* [변경] 가운데 칸에 배치 → 탭이 중앙으로 옴 */
+    grid-column: 2;                 /* 가운데 칸에 배치 → 탭이 중앙으로 옴 */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 40px;
 }
+/* 간장 / 양념: 버튼 모양 없이 일반 텍스트, 선택된 탭만 아래 라인 */
 .product-category-tabs .product-category {
     grid-column: auto;
-    min-width: 150px;
-    min-height: 58px;
-    padding: 0 34px;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    padding: 0 4px 8px;
     border: 0;
-    border-radius: 999px;
-    color: #666666;                 /* [변경] 선택 안 된 탭 글자색 */
-    background: #E5E5E5;            /* [변경] 선택 안 된 탭 배경색 */
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    color: #999;                    /* 선택 안 된 탭 글자색 */
+    background: transparent;
     font-family: inherit;
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 600;
     cursor: pointer;
-    transition: color .2s ease, background-color .2s ease;
+    transition: color .2s ease, border-color .2s ease;
+}
+.product-category-tabs .product-category:hover {
+    color: #171717;
 }
 .product-category-tabs .product-category.is-active {
-    color: #fff;
-    background: #ED1C24;            /* 선택된 탭은 그대로 */
+    color: #171717;                 /* 선택된 탭 글자색 */
+    border-bottom-color: #ED1C24;   /* 선택된 탭 라인 색 */
 }
 
 @media (max-width: 768px) {
-    .product-category-tabs { gap: 8px; }
+    .product-category-tabs { gap: 24px; }
     .product-category-tabs .product-category {
-        min-width: 112px;
-        min-height: 46px;
-        padding: 0 22px;
-        font-size: 19px;
+        padding: 0 2px 6px;
+        font-size: 21px;
+    }
+}
+
+
+/* ===== 추가 0: "더 알아보기" 동그란 버튼 (5개 섹션 공통) ===== */
+.best-products__more,
+.our-flavor__more,
+.notice-section__more,
+.news-section__more,
+.sns-section__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 28px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    color: #666;                    /* 버튼 글자색 */
+    background: #E5E5E5;            /* 버튼 배경색 */
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;          /* 기존 밑줄 제거 */
+    white-space: nowrap;
+    transition: color .2s ease, background-color .2s ease;
+}
+.best-products__more:hover,
+.our-flavor__more:hover,
+.notice-section__more:hover,
+.news-section__more:hover,
+.sns-section__more:hover {
+    color: #fff;
+    background: #ED1C24;            /* 마우스를 올리면 빨간색 */
+}
+@media (max-width: 768px) {
+    .best-products__more,
+    .our-flavor__more,
+    .notice-section__more,
+    .news-section__more,
+    .sns-section__more {
+        min-height: 38px;
+        padding: 0 18px;
+        font-size: 14px;
     }
 }
 
