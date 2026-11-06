@@ -492,21 +492,19 @@ a {
     margin: 60px 0 88px;
 }
 .product-category {
-    grid-column: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 174px;
-    height: 67px;
-    margin: 0;
-    padding: 0 34px;
-    box-sizing: border-box;
-    border-radius: 999px;
-    color: var(--text-inverse);
-    background: var(--accent-brand);
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.03em;
+    padding: 0 4px 8px;                 /* 아래 8px = 글씨와 라인 사이 간격 */
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--text-tertiary);                    /* 선택 안 된 탭 글자색 */
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.product-category.is-active {
+    color: var(--accent-brand);
+    border-bottom-color: var(--accent-brand);
 }
 .best-products__more {
     grid-column: 3;
@@ -626,9 +624,7 @@ a {
         margin: 26px 0 36px;
     }
     .product-category {
-        min-width: 120px;
-        height: 48px;
-        font-size: 21px;
+        font-size: 18px;
     }
     .best-products__more {
         font-size: 14px;
@@ -1501,38 +1497,9 @@ a {
     justify-content: center;
     gap: 40px;
 }
-/* 간장 / 양념: 버튼 모양 없이 일반 텍스트, 선택된 탭만 아래 라인 */
-.product-category-tabs .product-category {
-    grid-column: auto;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-    padding: 0 4px 8px;
-    border: 0;
-    border-bottom: 3px solid transparent;
-    border-radius: 0;
-    color: var(--text-tertiary);                    /* 선택 안 된 탭 글자색 */
-    background: transparent;
-    font-family: inherit;
-    font-size: 28px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: color .2s ease, border-color .2s ease;
-}
-.product-category-tabs .product-category:hover {
-    color: var(--text-primary);
-}
-.product-category-tabs .product-category.is-active {
-    color: var(--text-primary);                 /* 선택된 탭 글자색 */
-    border-bottom-color: var(--accent-brand);   /* 선택된 탭 라인 색 */
-}
 
 @media (max-width: 768px) {
     .product-category-tabs { gap: 24px; }
-    .product-category-tabs .product-category {
-        padding: 0 2px 6px;
-        font-size: 21px;
-    }
 }
 
 
