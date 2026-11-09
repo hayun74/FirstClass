@@ -85,4 +85,40 @@
             }
         });
     }
+
+
+    const dropdowns = [...document.querySelectorAll(".footer-dropdown")];
+    function closeDropdown(dropdown) {
+        const trigger = dropdown.querySelector(".footer-dropdown__trigger");
+        const menu = dropdown.querySelector(".footer-dropdown__menu");
+        menu.hidden = true;
+        trigger.setAttribute("aria-expanded", "false");
+        dropdown.classList.remove("is-open");
+    }
+    dropdowns.forEach((dropdown) => {
+        const trigger = dropdown.querySelector(".footer-dropdown__trigger");
+        const menu = dropdown.querySelector(".footer-dropdown__menu");
+        trigger.addEventListener("click", () => {
+            const shouldOpen = menu.hidden;
+            dropdowns.forEach(closeDropdown);
+            if (shouldOpen) {
+                menu.hidden = false;
+                trigger.setAttribute("aria-expanded", "true");
+                dropdown.classList.add("is-open");
+            }
+        });
+        menu.querySelectorAll("button").forEach((option) => {
+            option.addEventListener("click", () => {
+                trigger.childNodes[0].textContent = option.textContent.trim() + " ";
+                closeDropdown(dropdown);
+                trigger.focus();
+            });
+        });
+    });
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest(".footer-dropdown")) dropdowns.forEach(closeDropdown);
+    });
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") dropdowns.forEach(closeDropdown);
+    });
 })();
