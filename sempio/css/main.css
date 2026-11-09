@@ -1,5 +1,3 @@
-/* 콘텐츠 사이 간격: 이 값 하나로 우리맛 / 공지사항 / 소식 / SNS 간격이 모두 같이 바뀝니다. */
-/* 피그마 Variables */
 :root {
     /* primitive */
     --red-brand: #ED1C24;
@@ -1514,7 +1512,7 @@ a {
     box-sizing: border-box;
     border-radius: 999px;
     color: var(--text-secondary);                    /* 버튼 글자색 */
-    background: var(--gray-200);            /* 버튼 배경색 */
+    background: var(--gray-100);            /* 버튼 배경색 */
     font-size: 18px;
     font-weight: 600;
     line-height: 1;
