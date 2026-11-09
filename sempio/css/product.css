@@ -700,3 +700,45 @@ body {
 }
 
 
+
+
+/* 공통 서브페이지 콘텐츠 템플릿: 메인 페이지의 컬러·타이포·컨테이너 규칙을 확장 */
+.subpage-catalog { padding-top: 72px; }
+.subpage-anchor-nav {
+ display:flex; flex-wrap:wrap; gap:12px; margin:0 0 42px;
+ padding-bottom:24px; border-bottom:1px solid var(--border-default);
+}
+.subpage-anchor-nav a {
+ display:inline-flex; align-items:center; min-height:42px; padding:0 20px;
+ border:1px solid var(--border-default); border-radius:999px;
+ color:var(--text-secondary); background:var(--surface-default);
+ font-size:14px; transition:color .2s ease,background-color .2s ease,border-color .2s ease;
+}
+.subpage-anchor-nav a:hover,.subpage-anchor-nav a:focus-visible {
+ color:var(--red-deep); border-color:var(--red-deep); background:var(--background-accent);
+}
+.subpage-content-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 20px; }
+.subpage-content-card {
+ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1fr); align-items:center;
+ gap:24px; min-width:0; padding:22px; border-radius:20px; background:var(--background-default);
+ scroll-margin-top:24px;
+}
+.subpage-placeholder {
+ display:flex; align-items:center; justify-content:center; min-height:210px;
+ border-radius:20px; color:var(--text-tertiary); background:var(--gray-200);
+}
+.subpage-placeholder span { font-size:11px; font-weight:600; letter-spacing:.12em; }
+.subpage-card-copy h3 { color:var(--text-primary); font-size:23px; font-weight:600; line-height:1.4; word-break:keep-all; }
+.subpage-card-copy > p:last-child { margin-top:10px; color:var(--text-secondary); font-size:15px; line-height:1.7; }
+@media (max-width:1024px) {
+ .subpage-content-list { grid-template-columns:1fr; }
+ .subpage-content-card { grid-template-columns:minmax(0,.8fr) minmax(0,1fr); }
+}
+@media (max-width:768px) {
+ .subpage-catalog { padding-top:58px; }
+ .subpage-anchor-nav { gap:8px; margin-bottom:30px; }
+ .subpage-anchor-nav a { min-height:38px; padding:0 14px; font-size:13px; }
+ .subpage-content-card { grid-template-columns:1fr; gap:16px; padding:16px; }
+ .subpage-placeholder { min-height:190px; }
+ .subpage-card-copy h3 { font-size:20px; }
+}
