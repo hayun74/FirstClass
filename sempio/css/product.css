@@ -40,14 +40,21 @@ body {
     max-width: 1320px;
     margin: 0 auto;
 }
+
+/* 헤더: 화면 위에 떠 있는 방식(absolute)이라 펼쳐져도 본문이 밀리지 않습니다. */
 .product-header {
-    position: relative;
+    position: absolute;             /* [변경] relative → absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 20;
     height: 90px;
     color: var(--text-primary);
     background: var(--surface-default);
     border-bottom: 1px solid var(--border-default);
 }
+/* 헤더가 떠 있는 만큼 본문을 아래로 내려 가려지지 않게 함 */
+.product-header + main { padding-top: 90px; }
 .product-header:hover,
 .product-header:focus-within {
     height: 330px;
@@ -65,14 +72,7 @@ body {
     background: var(--background-default);
 }
 .product-hero .product-container { position: relative; }
-.page-eyebrow,
-.section-eyebrow {
-    margin-bottom: 14px;
-    color: var(--red-deep);
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: .12em;
-}
+
 .product-hero h1 {
     color: var(--red-deep);
     font-size: 56px;
@@ -378,7 +378,6 @@ body {
     justify-content: space-between;
     gap: 40px;
 }
-.product-guide .section-eyebrow { color: var(--text-inverse); opacity: .75; }
 .product-guide h2 {
     font-size: 36px;
     font-weight: 500;
@@ -569,6 +568,7 @@ body {
 @media (max-width: 1024px) {
     .product-header,
     .product-header .header-inner { height: 64px; }
+    .product-header + main { padding-top: 64px; }   /* [추가] 모바일 헤더 높이만큼 본문 여백 */
     .product-header .header-inner { width: calc(100% - 32px); }
     .product-header .header-utility,
     .product-header .main-nav { display: none; }
