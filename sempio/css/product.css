@@ -172,12 +172,6 @@ body {
     font-size: 16px;
     line-height: 1.6;
 }
-.result-label {
-    color: var(--text-tertiary);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .12em;
-}
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -593,7 +587,6 @@ body {
     .catalog-panel { padding-top: 32px; }
     .panel-heading h3 { font-size: 23px; }
     .panel-heading p { font-size: 14px; }
-    .result-label { display: none; }
     .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 34px; }
     .product-item__info { padding-top: 13px; }
     .product-item h4 { font-size: 17px; }
