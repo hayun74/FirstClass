@@ -223,6 +223,9 @@ body {
 }
 /* 종류별 제품: 선택한 종류의 묶음만 보임 */
 .type-product-group[hidden] { display: none; }
+/* 브랜드별 제품: 선택한 브랜드의 소개 + 제품만 보임 */
+.brand-content { min-width: 0; }
+.brand-group[hidden] { display: none; }
 .product-item__info { padding: 18px 4px 0; }
 .product-item__category {
     margin-bottom: 8px;
