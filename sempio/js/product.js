@@ -45,6 +45,8 @@
         });
     });
 
+    // 종류별 제품: 선택한 종류(data-filter)와 같은 data-group 묶음만 보여줌
+    const typeGroups = [...document.querySelectorAll(".type-product-group")];
     document.querySelectorAll(".filter-chip").forEach((chip) => {
         chip.addEventListener("click", () => {
             chip.parentElement.querySelectorAll(".filter-chip").forEach((item) => {
@@ -52,6 +54,12 @@
                 item.classList.toggle("is-active", active);
                 item.setAttribute("aria-pressed", String(active));
             });
+            const target = chip.dataset.filter;
+            if (target) {
+                typeGroups.forEach((group) => {
+                    group.hidden = group.dataset.group !== target;
+                });
+            }
         });
     });
 
