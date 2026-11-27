@@ -201,6 +201,21 @@ body {
     font-weight: 600;
     letter-spacing: .12em;
 }
+/* 이미지 영역: <img>를 넣으면 칸 전체를 채우고, 이미지가 없으면 회색 칸과 글씨가 보임 */
+.product-item__visual,
+.brand-feature__visual,
+.new-product-card__visual { position: relative; }
+.product-item__visual img,
+.brand-feature__visual img,
+.new-product-card__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;            /* 이미지를 잘림 없이 칸 안에 맞춤 (꽉 채우려면 cover) */
+}
+/* 종류별 제품: 선택한 종류의 묶음만 보임 */
+.type-product-group[hidden] { display: none; }
 .product-item__info { padding: 18px 4px 0; }
 .product-item__category {
     margin-bottom: 8px;
