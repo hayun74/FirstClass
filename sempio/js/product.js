@@ -63,6 +63,8 @@
         });
     });
 
+    // 브랜드별 제품: 선택한 브랜드(data-brand)와 같은 data-brand-group 묶음만 보여줌
+    const brandGroups = [...document.querySelectorAll(".brand-group")];
     document.querySelectorAll(".brand-option").forEach((option) => {
         option.addEventListener("click", () => {
             option.parentElement.querySelectorAll(".brand-option").forEach((item) => {
@@ -70,6 +72,12 @@
                 item.classList.toggle("is-active", active);
                 item.setAttribute("aria-pressed", String(active));
             });
+            const target = option.dataset.brand;
+            if (target) {
+                brandGroups.forEach((group) => {
+                    group.hidden = group.dataset.brandGroup !== target;
+                });
+            }
         });
     });
 
