@@ -178,7 +178,14 @@ body {
     column-gap: var(--content-gap);
     row-gap: 54px;
 }
-.product-item { min-width: 0; }
+.product-item {
+    min-width: 0;
+    transition: transform .25s ease;
+}
+.product-item__visual { transition: background-color .25s ease; }
+/* 마우스를 올리면 카드가 살짝 올라오고 이미지 칸 배경이 진해짐 (메인 공지사항 카드와 같은 효과) */
+.product-item:hover { transform: translateY(-5px); }
+.product-item:hover .product-item__visual { background: var(--background-hover); }
 .product-item__visual,
 .brand-feature__visual,
 .new-product-card__visual {
